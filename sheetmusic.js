@@ -92,15 +92,35 @@ const SheetMusic = (() => {
   // Picks the pitch (if any) this section's slot has for the given stave.
   // RH/LH sections only have notes on their own clef; the other stave gets
   // ghost notes so the grand staff is always shown, just empty on the unused side.
-  function makeSectionNote(VF, slot, sectionClef, staveClef) {
+  function makeSectionNote(VF, slot, sectionClef, staveClef, noteName) {
     let midi = null;
     if (sectionClef === "grand") {
       midi = staveClef === "treble" ? slot.pitches[0] : slot.pitches[1];
     } else if (sectionClef === staveClef) {
       midi = slot.pitches[0];
     }
-    const noteName = noteNameFromAudio(slot.voiceAudio);
     return midi == null ? makeRestNote(VF) : makeClefNote(VF, midi, staveClef, noteName);
+  }
+
+  // Structural clips (e.g. "now_backwards.wav") have no note-name of their own
+  // to parse from voiceAudio — they're a spoken turnaround cue that repeats
+  // the same pitch(es) as the immediately preceding slot (the top note of the
+  // scale, played twice: once with its real note-name clip, once with "now
+  // backwards"). Reusing the previous slot's already-resolved note name keeps
+  // display correct (e.g. "F#") instead of falling back to the bare,
+  // sharp/flat-blind natural-letter-per-pitch-class guess.
+  function resolveNoteNames(section) {
+    let prevNoteName = null;
+    let prevPitches = null;
+    return section.slots.map((slot) => {
+      const samePitchesAsPrev =
+        prevPitches && slot.pitches.length === prevPitches.length &&
+        slot.pitches.every((p, i) => p === prevPitches[i]);
+      const noteName = noteNameFromAudio(slot.voiceAudio) || (samePitchesAsPrev ? prevNoteName : null);
+      prevNoteName = noteName;
+      prevPitches = slot.pitches;
+      return noteName;
+    });
   }
 
   function renderSection(container, section) {
@@ -153,8 +173,9 @@ const SheetMusic = (() => {
     trebleStave.setNoteStartX(noteStartX);
     bassStave.setNoteStartX(noteStartX);
 
-    const trebleNotes = section.slots.map((slot) => makeSectionNote(VF, slot, section.clef, "treble"));
-    const bassNotes = section.slots.map((slot) => makeSectionNote(VF, slot, section.clef, "bass"));
+    const noteNames = resolveNoteNames(section);
+    const trebleNotes = section.slots.map((slot, i) => makeSectionNote(VF, slot, section.clef, "treble", noteNames[i]));
+    const bassNotes = section.slots.map((slot, i) => makeSectionNote(VF, slot, section.clef, "bass", noteNames[i]));
 
     const trebleVoice = new VF.Voice({ num_beats: slotCount, beat_value: 4 }).setStrict(false);
     trebleVoice.addTickables(trebleNotes);

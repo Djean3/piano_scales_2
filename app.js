@@ -22,7 +22,10 @@ function scalePitchRange(scale) {
     }
   }
   const loC = lo - ((lo % 12 + 12) % 12);
-  return { min: loC, max: hi };
+  // Show a full extra octave of context below and above the scale's own
+  // range so the keyboard reads as a real piano rather than a cropped
+  // sliver of keys sized to exactly what's being played.
+  return { min: loC - 12, max: hi + 12 };
 }
 
 function labelFromAudio(path) {
@@ -80,6 +83,8 @@ function buildSequence(scale) {
 
     sectionStarts[`${section.id}-fwd`] = bar;
     const half = Math.floor(section.slots.length / 2);
+    let prevNoteName = null;
+    let prevPitches = null;
 
     section.slots.forEach((slot, slotIndex) => {
       if (slotIndex === half) {
@@ -101,7 +106,20 @@ function buildSequence(scale) {
           fingerOnlyAudio = FINGER_AUDIO[slot.finger];
         }
       }
-      const noteName = noteNameFromAudio(slot.voiceAudio);
+      // Structural clips (e.g. "now_backwards.wav") have no note-name of their
+      // own to parse — they're a spoken turnaround cue that repeats the same
+      // pitch(es) as the immediately preceding slot (e.g. the top note of the
+      // scale, played twice: once with its real note-name clip, once with
+      // "now backwards"). Reuse the previous slot's already-resolved note
+      // name in that case so display stays correct (e.g. "F#", not the bare
+      // natural-letter fallback "F") instead of silently falling back to a
+      // sharp/flat-blind pitch-class letter.
+      const samePitchesAsPrev =
+        prevPitches && slot.pitches.length === prevPitches.length &&
+        slot.pitches.every((p, i) => p === prevPitches[i]);
+      const noteName = noteNameFromAudio(slot.voiceAudio) || (samePitchesAsPrev ? prevNoteName : null);
+      prevNoteName = noteName;
+      prevPitches = slot.pitches;
       // Structural clips (e.g. "now_backwards.wav") have no finger number, so
       // they go through the "cue" gate (Voice Cues toggle). Note/finger clips
       // are handled separately by the names/fingers toggles.
