@@ -114,6 +114,29 @@ const SheetMusic = (() => {
     renderer.resize(width, height);
     const context = renderer.getContext();
 
+    // Scale the notation to fit the panel width instead of overflowing it —
+    // without a viewBox, the SVG paints at its literal pixel width/height, so
+    // longer scales/arpeggios (more slots => wider SVG) can exceed the visible
+    // panel and push the final note(s) past the edge, only reachable via a
+    // horizontal scroll a user may not notice. A viewBox + 100% CSS width
+    // makes the whole sequence always fit in view, matching the reference
+    // design (every note visible at once, no scrolling needed).
+    const rootSvg = container.querySelector("svg");
+    if (rootSvg) {
+      rootSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      rootSvg.removeAttribute("width");
+      rootSvg.setAttribute("height", height);
+      rootSvg.style.width = "100%";
+      rootSvg.style.height = "auto";
+    }
+
+    // Notation ink follows the app's current theme (--sheet-ink) so it stays
+    // legible now that the sheet-music panel itself is theme-colored instead
+    // of a fixed cream background.
+    const ink = getComputedStyle(document.documentElement).getPropertyValue("--sheet-ink").trim() || "#000000";
+    context.setFillStyle(ink);
+    context.setStrokeStyle(ink);
+
     const trebleStave = new VF.Stave(10, 20, width - 20);
     trebleStave.addClef("treble");
     trebleStave.setContext(context).draw();
@@ -145,6 +168,22 @@ const SheetMusic = (() => {
 
     trebleVoice.draw(context, trebleStave);
     bassVoice.draw(context, bassStave);
+
+    // VexFlow's noteheads and text annotations hardcode their own fill/stroke
+    // internally at draw time — they don't inherit context.setFillStyle() the
+    // way stave lines and clefs do. Force every already-colored SVG element
+    // (i.e. everything VexFlow itself drew) to the theme ink color directly,
+    // so noteheads and the note-letter labels actually recolor with the
+    // theme instead of staying stuck black. Only elements that already carry
+    // an explicit fill/stroke attribute are touched, so nothing gets an
+    // unwanted outline added.
+    const notationSvg = container.querySelector("svg");
+    if (notationSvg) {
+      notationSvg.querySelectorAll("*").forEach((el) => {
+        if (el.getAttribute("fill") && el.getAttribute("fill") !== "none") el.setAttribute("fill", ink);
+        if (el.getAttribute("stroke") && el.getAttribute("stroke") !== "none") el.setAttribute("stroke", ink);
+      });
+    }
 
     // Use whichever stave has the real (non-ghost) notes for this section's
     // x-positions, so the playhead and cross-arcs line up with visible noteheads.

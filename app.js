@@ -804,7 +804,10 @@ function stopMetronome() {
 pillButtons.forEach((pill) => {
   pill.addEventListener("click", () => {
     selectedSection = pill.dataset.target;
-    pillButtons.forEach((p) => p.classList.toggle("active", p === pill));
+    // Sync by data-target, not by exact element — the transport bar's quick
+    // Left/Right/Both swap duplicates 3 of these targets (rh/lh/together) so
+    // both sets of buttons need to reflect the same active selection.
+    pillButtons.forEach((p) => p.classList.toggle("active", p.dataset.target === selectedSection));
   });
 });
 
@@ -1003,3 +1006,156 @@ let precountFromBar = -1;
   const saved = (() => { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } })();
   applyTheme(saved && ["dark", "light", "hc"].includes(saved) ? saved : "dark");
 })();
+
+// ── Piano-centric redesign: popouts, notes-in-scale pills, status card, volume ──
+// Purely additive — reuses the existing element IDs/state above, no engine changes.
+
+function closeAllPopouts() {
+  document.querySelectorAll(".popout").forEach((p) => p.classList.remove("open"));
+  document.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
+}
+function openPopout(panel) {
+  closeAllPopouts();
+  const panelEl = document.querySelector(`.popout[data-panel="${panel}"]`);
+  const btnEl = document.querySelector(`.nav-btn[data-panel="${panel}"]`);
+  if (panelEl) panelEl.classList.add("open");
+  if (btnEl) btnEl.classList.add("active");
+}
+document.querySelectorAll(".nav-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const panel = btn.dataset.panel;
+    const alreadyOpen = document.querySelector(`.popout[data-panel="${panel}"]`)?.classList.contains("open");
+    if (alreadyOpen) closeAllPopouts();
+    else openPopout(panel);
+  });
+});
+document.querySelectorAll("[data-close-panel]").forEach((btn) => {
+  btn.addEventListener("click", closeAllPopouts);
+});
+document.getElementById("scale-apply-btn")?.addEventListener("click", closeAllPopouts);
+
+// Notes-in-Scale pills — unique pitch classes from the RH section, in ascending
+// order of first appearance, root highlighted. Works for any slot count (5-note
+// pentatonics, 7-note scales, 6/8-note exotic scales, 2-octave arpeggios).
+function renderNotesInScale() {
+  const container = document.getElementById("notes-in-scale");
+  if (!container) return;
+  const scale = currentScale();
+  if (!scale) { container.innerHTML = ""; return; }
+  const rh = scale.sections.find((s) => s.id === "rh");
+  if (!rh || !rh.slots.length) { container.innerHTML = ""; return; }
+  const seen = new Set();
+  const pcs = [];
+  for (const slot of rh.slots) {
+    for (const p of slot.pitches) {
+      const pc = ((p % 12) + 12) % 12;
+      if (!seen.has(pc)) { seen.add(pc); pcs.push(pc); }
+    }
+  }
+  const rootPc = ((rh.slots[0].pitches[0] % 12) + 12) % 12;
+  container.innerHTML = pcs
+    .map((pc) => `<span class="note-pill${pc === rootPc ? " root" : ""}">${NOTE_NAMES[pc]}</span>`)
+    .join("");
+}
+renderNotesInScale();
+scaleSelect.addEventListener("change", renderNotesInScale);
+scaleTypeSelect.addEventListener("change", renderNotesInScale);
+
+// Status card (top-right): current scale name, BPM, loop/ramp progress. Polls
+// existing state on a light interval rather than hooking every mutation site —
+// this is display-only and every value it reads is already cheap DOM/state access.
+function syncStatusCard() {
+  const scaleEl = document.getElementById("status-card-scale");
+  if (!scaleEl) return;
+  const bpmEl = document.getElementById("status-card-bpm");
+  const loopEl = document.getElementById("status-card-loop");
+  const scale = currentScale();
+  scaleEl.textContent = scale ? scale.name : "No scale selected";
+  bpmEl.textContent = `${tempoValue.textContent} BPM`;
+  if (loopEnabled && currentSelection) {
+    loopEl.textContent = toggleRamp.checked
+      ? `Looping · +${rampAmount.value} BPM / ${rampLoops.value} loops`
+      : "Looping";
+  } else {
+    loopEl.textContent = "";
+  }
+}
+setInterval(syncStatusCard, 500);
+syncStatusCard();
+
+// Size mode (Mobile / Tablet / Computer) — a manual layout-density override,
+// separate from the theme system. Persists the same way (localStorage,
+// html.dataset), but "desktop" is the implicit default and never gets its
+// own `html[data-size="desktop"]` CSS block since it just uses the :root
+// values already sized for computer screens.
+(function () {
+  const htmlEl = document.documentElement;
+  const sizePills = document.querySelectorAll(".size-pill");
+  const SIZE_STORAGE_KEY = "scalePracticeSize";
+
+  function applySize(val) {
+    if (val === "desktop") delete htmlEl.dataset.size;
+    else htmlEl.dataset.size = val;
+    sizePills.forEach((p) => p.classList.toggle("active", p.dataset.sizeVal === val));
+    try { localStorage.setItem(SIZE_STORAGE_KEY, val); } catch (e) {}
+  }
+
+  sizePills.forEach((p) => p.addEventListener("click", () => applySize(p.dataset.sizeVal)));
+
+  const savedSize = (() => { try { return localStorage.getItem(SIZE_STORAGE_KEY); } catch (e) { return null; } })();
+  applySize(savedSize && ["mobile", "tablet", "desktop"].includes(savedSize) ? savedSize : "desktop");
+})();
+
+// Re-render sheet music notation when the theme changes. VexFlow bakes ink
+// color into the SVG at draw time (not live CSS) via the --sheet-ink read in
+// sheetmusic.js, so switching themes after a scale is already drawn leaves
+// the old ink color stuck — e.g. black notation drawn in light mode stays
+// black even after switching to dark mode's now-dark panel (invisible).
+// Re-init picks up the new --sheet-ink value; re-showing whichever section
+// was visible keeps the user's current view instead of blanking it.
+document.querySelectorAll(".theme-pill").forEach((pill) => {
+  pill.addEventListener("click", () => {
+    const scale = currentScale();
+    const sheetMusicEl = document.getElementById("sheet-music");
+    if (!scale || !sheetMusicEl) return;
+    let visibleSectionId = null;
+    sheetMusicEl.querySelectorAll(".sheet-music-section").forEach((el) => {
+      if (el.style.display !== "none") visibleSectionId = el.dataset.section;
+    });
+    SheetMusic.init(sheetMusicEl, scale);
+    if (visibleSectionId) SheetMusic.showSection(visibleSectionId);
+  });
+});
+
+// Master volume slider (new control, not in the original engine) — drives the
+// shared Tone.js output every sound in this app already renders through
+// (Sampler and click synths all call .toDestination()).
+const masterVolumeSlider = document.getElementById("master-volume");
+if (masterVolumeSlider) {
+  masterVolumeSlider.addEventListener("input", () => {
+    const pct = parseInt(masterVolumeSlider.value, 10) / 100;
+    Tone.Destination.volume.value = pct <= 0 ? -Infinity : -40 + pct * 40;
+  });
+  Tone.Destination.volume.value = -40 + (parseInt(masterVolumeSlider.value, 10) / 100) * 40;
+}
+
+// Quick tempo nudge (transport bar) — adjusts the same tempoSlider the Tempo
+// popout uses, via a real "input" event, so it stays the single source of
+// truth (Tone.Transport.bpm update, tempo-value text) with no duplicated logic.
+const tempoNudgeDown = document.getElementById("tempo-nudge-down");
+const tempoNudgeUp = document.getElementById("tempo-nudge-up");
+const quickTempoDisplay = document.getElementById("quick-tempo-display");
+function nudgeTempo(delta) {
+  const min = parseInt(tempoSlider.min, 10);
+  const max = parseInt(tempoSlider.max, 10);
+  const next = Math.min(max, Math.max(min, parseInt(tempoSlider.value, 10) + delta));
+  tempoSlider.value = next;
+  tempoSlider.dispatchEvent(new Event("input"));
+}
+tempoNudgeDown?.addEventListener("click", () => nudgeTempo(-1));
+tempoNudgeUp?.addEventListener("click", () => nudgeTempo(1));
+if (quickTempoDisplay) {
+  const syncQuickTempo = () => { quickTempoDisplay.textContent = tempoValue.textContent; };
+  setInterval(syncQuickTempo, 250);
+  syncQuickTempo();
+}
