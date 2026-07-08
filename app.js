@@ -1109,19 +1109,45 @@ syncStatusCard();
 (function () {
   const htmlEl = document.documentElement;
   const sizePills = document.querySelectorAll(".size-pill");
+  const sizeHint = document.getElementById("size-auto-hint");
   const SIZE_STORAGE_KEY = "scalePracticeSize";
 
-  function applySize(val) {
+  function applySize(val, isAutoDetected) {
     if (val === "desktop") delete htmlEl.dataset.size;
     else htmlEl.dataset.size = val;
     sizePills.forEach((p) => p.classList.toggle("active", p.dataset.sizeVal === val));
     try { localStorage.setItem(SIZE_STORAGE_KEY, val); } catch (e) {}
+    if (sizeHint) {
+      const label = val === "mobile" ? "Mobile" : val === "tablet" ? "Tablet" : "Computer";
+      sizeHint.textContent = isAutoDetected ? `Auto-detected: ${label} — pick a different one anytime.` : "";
+    }
   }
 
-  sizePills.forEach((p) => p.addEventListener("click", () => applySize(p.dataset.sizeVal)));
+  sizePills.forEach((p) => p.addEventListener("click", () => applySize(p.dataset.sizeVal, false)));
+
+  // Guesses a sensible default from the device itself (touch capability +
+  // user agent + viewport width) so first-time visitors land on a readable
+  // layout without having to open Settings — only used when the user hasn't
+  // already picked a size explicitly (that choice always wins on return visits).
+  function detectDeviceSize() {
+    const ua = navigator.userAgent || "";
+    const isTouch = (navigator.maxTouchPoints || 0) > 0 || "ontouchstart" in window;
+    const w = window.innerWidth;
+    if (/iPhone|Android.*Mobile|Mobi/i.test(ua)) return "mobile";
+    if (/iPad|Android(?!.*Mobile)/i.test(ua)) return "tablet";
+    if (isTouch && w < 600) return "mobile";
+    if (isTouch && w < 1200) return "tablet";
+    if (w < 600) return "mobile";
+    if (w < 1024) return "tablet";
+    return "desktop";
+  }
 
   const savedSize = (() => { try { return localStorage.getItem(SIZE_STORAGE_KEY); } catch (e) { return null; } })();
-  applySize(savedSize && ["mobile", "tablet", "desktop"].includes(savedSize) ? savedSize : "desktop");
+  if (savedSize && ["mobile", "tablet", "desktop"].includes(savedSize)) {
+    applySize(savedSize, false);
+  } else {
+    applySize(detectDeviceSize(), true);
+  }
 })();
 
 // Re-render sheet music notation when the theme changes. VexFlow bakes ink

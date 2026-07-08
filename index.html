@@ -9,25 +9,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #060912;
-    --surface:   #0d1420;
-    --surface-2: #182338;
-    --border:    rgba(148,163,255,0.14);
-    --text:      rgba(240,244,255,0.96);
-    --muted:     rgba(200,210,240,0.56);
-    --accent:    #2dd4bf;
-    --accent-fg: #03211d;
-    --accent-2:  #b794f6;
+    --bg:        #0b0c14;
+    --surface:   #12131e;
+    --surface-2: #1b1d2c;
+    --border:    rgba(200,195,255,0.12);
+    --text:      rgba(242,242,250,0.96);
+    --muted:     rgba(205,205,225,0.54);
+    --accent:    #7c6cf6;
+    --accent-fg: #ffffff;
+    --accent-2:  #f472b6;
     --lh-color:  #38bdf8;
     --lh-fg:     #04202b;
     --danger:    #fb7185;
-    --glass-bg:     rgba(15,22,40,0.42);
-    --glass-bg-2:   rgba(20,28,48,0.56);
-    --glass-border: rgba(150,200,255,0.22);
-    --glass-blur:   blur(30px) saturate(200%);
-    --neon-1:    rgba(45,212,191,0.45);
-    --neon-2:    rgba(183,148,246,0.32);
-    --neon-glow: 0 0 0 1px var(--neon-1), 0 0 22px -2px var(--neon-1), 0 0 46px -6px var(--neon-2);
+    --glass-bg:     rgba(255,255,255,0.05);
+    --glass-bg-2:   rgba(255,255,255,0.08);
+    --glass-border: rgba(255,255,255,0.14);
+    --glass-blur:   blur(20px) saturate(160%);
+    --neon-1:    rgba(124,108,246,0.4);
+    --neon-2:    rgba(244,114,182,0.22);
+    --neon-glow: 0 0 0 1px var(--neon-1), 0 0 18px -4px var(--neon-1);
     --sheet-ink:    #eef1ff;
     --content-max:  1220px;
     --piano-height: 300px;
@@ -43,13 +43,7 @@
   *, *::before, *::after { box-sizing: border-box; }
 
   html {
-    background:
-      radial-gradient(ellipse 65% 55% at 10% 0%, rgba(45,212,191,0.5) 0%, transparent 58%),
-      radial-gradient(ellipse 55% 50% at 85% 0%, rgba(183,148,246,0.42) 0%, transparent 55%),
-      radial-gradient(ellipse 60% 50% at 95% 100%, rgba(56,189,248,0.38) 0%, transparent 55%),
-      radial-gradient(ellipse 50% 45% at 30% 100%, rgba(45,212,191,0.24) 0%, transparent 55%),
-      var(--bg);
-    background-attachment: fixed;
+    background: var(--bg);
   }
   body {
     margin: 0;
@@ -122,9 +116,9 @@
   .nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.05); }
   .nav-btn.active {
     color: var(--accent);
-    background: rgba(20,184,166,0.12);
-    border-color: rgba(20,184,166,0.4);
-    box-shadow: 0 0 0 1px rgba(20,184,166,0.15) inset;
+    background: rgba(124,108,246,0.12);
+    border-color: rgba(124,108,246,0.4);
+    box-shadow: 0 0 0 1px rgba(124,108,246,0.15) inset;
   }
 
   .status-card {
@@ -152,7 +146,7 @@
   .popout {
     display: none;
     background:
-      linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 35%, rgba(20,184,166,0.06) 100%),
+      linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 35%, rgba(124,108,246,0.06) 100%),
       var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
@@ -185,7 +179,7 @@
     background: transparent; border: 1px solid var(--border);
     color: var(--muted); cursor: pointer; transition: color 0.15s, border-color 0.15s;
   }
-  .popout-close:hover { color: var(--text); border-color: rgba(20,184,166,0.4); }
+  .popout-close:hover { color: var(--text); border-color: rgba(124,108,246,0.4); }
 
   .field-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
   .field { flex: 1; min-width: 140px; }
@@ -211,7 +205,7 @@
     font-family: inherit;
     transition: border-color 0.15s;
   }
-  select:hover { border-color: rgba(20,184,166,0.4); }
+  select:hover { border-color: rgba(124,108,246,0.4); }
   select.inline-select { width: auto; padding: 5px 24px 5px 9px; font-size: 0.82rem; }
   select option.unavailable { color: var(--danger); }
   .scale-unavailable-msg { color: var(--danger); font-size: 0.82rem; margin: 0 0 14px; line-height: 1.4; }
@@ -299,7 +293,7 @@
     transition: background 0.12s, color 0.12s, border-color 0.12s;
   }
   .preset-pill.active { background: var(--accent); color: var(--accent-fg); border-color: transparent; font-weight: 700; }
-  .preset-pill:not(.active):hover { color: var(--text); border-color: rgba(20,184,166,0.4); }
+  .preset-pill:not(.active):hover { color: var(--text); border-color: rgba(124,108,246,0.4); }
   .click-controls { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
   .field-block { margin-bottom: 16px; }
   .field-block:last-child { margin-bottom: 0; }
@@ -325,7 +319,7 @@
     transition: background 0.12s, color 0.12s, border-color 0.12s; flex-shrink: 0;
   }
   .pill.active { background: var(--accent); color: var(--accent-fg); border-color: transparent; font-weight: 700; }
-  .pill:not(.active):hover { color: var(--text); border-color: rgba(20,184,166,0.4); }
+  .pill:not(.active):hover { color: var(--text); border-color: rgba(124,108,246,0.4); }
   button:disabled { opacity: 0.4; cursor: default; }
 
   /* Practice Aids (pre-count / speed ramp) inside Practice popout */
@@ -351,12 +345,15 @@
     transition: background 0.12s, color 0.12s, border-color 0.12s;
   }
   .theme-pill.active, .size-pill.active { background: var(--accent); color: var(--accent-fg); border-color: transparent; font-weight: 700; }
-  .theme-pill:not(.active):hover, .size-pill:not(.active):hover { color: var(--text); border-color: rgba(20,184,166,0.4); }
+  .theme-pill:not(.active):hover, .size-pill:not(.active):hover { color: var(--text); border-color: rgba(124,108,246,0.4); }
   .size-pill {
     flex: 1; padding: 7px 4px; font-size: 0.72rem; font-weight: 500; border-radius: 7px; background: var(--surface-2);
     border: 1px solid var(--border); color: var(--muted); cursor: pointer; font-family: inherit; text-align: center;
     transition: background 0.12s, color 0.12s, border-color 0.12s;
   }
+  .size-pills .size-pill { display: flex; align-items: center; justify-content: center; gap: 5px; }
+  .size-pill svg { flex-shrink: 0; }
+  .field-hint { display: block; margin-top: 7px; font-size: 0.68rem; color: var(--muted); }
 
   /* ── Stage: sheet music + piano + transport ── */
   .stage { margin-top: 18px; }
@@ -456,7 +453,7 @@
   .piano-key:not(.active) .key-finger, .piano-key:not(.active) .key-note, .piano-key:not(.active) .key-degree { color: transparent; }
   .current-scale-label {
     display: inline-block; margin: 0 0 12px; font-size: 0.78rem; font-weight: 700; color: var(--accent);
-    background: rgba(20,184,166,0.12); border: 1px solid rgba(20,184,166,0.3); border-radius: 6px; padding: 3px 9px;
+    background: rgba(124,108,246,0.12); border: 1px solid rgba(124,108,246,0.3); border-radius: 6px; padding: 3px 9px;
   }
   .current-scale-label:empty { display: none; }
 
@@ -492,7 +489,7 @@
     border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border); color: var(--muted);
     transition: background 0.15s, color 0.15s, border-color 0.15s; padding: 0;
   }
-  .btn-icon:not(:disabled):hover { border-color: rgba(20,184,166,0.4); color: var(--text); }
+  .btn-icon:not(:disabled):hover { border-color: rgba(124,108,246,0.4); color: var(--text); }
   .btn-icon.active { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
   #play-btn {
     display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -511,7 +508,7 @@
     background: none; border: none; padding: 2px 3px; cursor: pointer; color: var(--muted); font-size: 0.7rem;
     line-height: 1; border-radius: 4px; transition: color 0.15s, background 0.15s;
   }
-  .timer-btn:hover { color: var(--accent); background: rgba(20,184,166,0.1); }
+  .timer-btn:hover { color: var(--accent); background: rgba(124,108,246,0.1); }
   .transport-volume { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
   .transport-volume svg { color: var(--muted); flex-shrink: 0; }
   #master-volume { width: 100px; }
@@ -528,7 +525,7 @@
     width: 26px; height: 26px; border-radius: 50%; background: transparent;
     border: none; color: var(--muted); cursor: pointer; transition: background 0.12s, color 0.12s;
   }
-  .tempo-nudge:hover { background: rgba(20,184,166,0.15); color: var(--accent); }
+  .tempo-nudge:hover { background: rgba(124,108,246,0.15); color: var(--accent); }
   .tempo-nudge:active { transform: scale(0.92); }
   .quick-tempo-value {
     font-size: 0.8rem; font-weight: 700; color: var(--text); padding: 0 6px;
@@ -574,7 +571,7 @@
 
   .theory-chord-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 8px; }
   .theory-chord { display: flex; flex-direction: column; align-items: center; padding: 6px 2px; border-radius: 4px; border: 1px solid var(--border); gap: 2px; }
-  .theory-chord.theory-chord-major { border-color: rgba(20,184,166,0.35); background: rgba(20,184,166,0.06); }
+  .theory-chord.theory-chord-major { border-color: rgba(124,108,246,0.35); background: rgba(124,108,246,0.06); }
   .theory-chord.theory-chord-dim { opacity: 0.6; }
   .chord-roman { font-size: 0.6rem; font-weight: 600; color: var(--muted); }
   .chord-name { font-size: 0.75rem; font-weight: 600; color: var(--text); }
@@ -585,7 +582,7 @@
   .mode-note { font-weight: 700; font-size: 0.82rem; color: var(--accent); }
   .mode-name { font-size: 0.8rem; font-weight: 500; color: var(--text); }
   .mode-quality { font-size: 0.65rem; padding: 1px 5px; border-radius: 3px; border: 1px solid var(--border); text-transform: capitalize; }
-  .mode-quality.mode-major { color: var(--accent); border-color: rgba(20,184,166,0.35); }
+  .mode-quality.mode-major { color: var(--accent); border-color: rgba(124,108,246,0.35); }
   .mode-quality.mode-minor { color: var(--muted); }
   .mode-quality.mode-diminished { color: var(--danger); border-color: rgba(248,113,113,0.28); }
   .mode-vibe { font-size: 0.67rem; color: var(--muted); }
@@ -610,7 +607,7 @@
 
   .theory-penta-row { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
   .penta-note { padding: 4px 9px; border-radius: 5px; font-size: 0.78rem; font-weight: 600; transition: opacity 0.15s; }
-  .penta-note.in  { background: rgba(20,184,166,0.12); border: 1px solid rgba(20,184,166,0.35); color: var(--accent); }
+  .penta-note.in  { background: rgba(124,108,246,0.12); border: 1px solid rgba(124,108,246,0.35); color: var(--accent); }
   .penta-note.out { background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); opacity: 0.45; text-decoration: line-through; }
 
   .theory-prog-list { display: flex; flex-direction: column; gap: 6px; }
@@ -640,17 +637,17 @@
     --border:    rgba(15,23,23,0.10);
     --text:      rgba(15,23,23,0.92);
     --muted:     rgba(15,23,23,0.52);
-    --accent:    #0d9488;
+    --accent:    #7c3aed;
     --accent-fg: #ffffff;
-    --accent-2:  #7c3aed;
+    --accent-2:  #db2777;
     --lh-color:  #0284c7;
     --lh-fg:     #ffffff;
     --danger:    #dc2626;
     --glass-bg:     rgba(255,255,255,0.38);
     --glass-bg-2:   rgba(255,255,255,0.5);
     --glass-border: rgba(15,23,23,0.14);
-    --neon-1:    rgba(13,148,136,0.28);
-    --neon-2:    rgba(124,58,237,0.16);
+    --neon-1:    rgba(124,58,237,0.25);
+    --neon-2:    rgba(219,39,119,0.14);
     --neon-glow: 0 0 0 1px var(--neon-1), 0 4px 18px -6px var(--neon-1);
     --sheet-ink:    #14151a;
     color-scheme: light;
@@ -1041,11 +1038,21 @@
       </div>
       <div class="field-block">
         <span class="field-block-label">Size</span>
-        <div class="theme-pills">
-          <button class="size-pill" data-size-val="mobile">Mobile</button>
-          <button class="size-pill" data-size-val="tablet">Tablet</button>
-          <button class="size-pill active" data-size-val="desktop">Computer</button>
+        <div class="theme-pills size-pills">
+          <button class="size-pill" data-size-val="mobile">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+            Mobile
+          </button>
+          <button class="size-pill" data-size-val="tablet">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M11 18h2"/></svg>
+            Tablet
+          </button>
+          <button class="size-pill active" data-size-val="desktop">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Computer
+          </button>
         </div>
+        <span class="field-hint" id="size-auto-hint"></span>
       </div>
     </div>
 
