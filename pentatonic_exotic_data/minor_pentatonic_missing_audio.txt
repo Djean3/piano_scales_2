@@ -1,0 +1,29 @@
+Missing voice audio files needed by minor_pentatonic.js
+=========================================================
+
+These two finger+note combos are referenced by the Ab (G#) Minor Pentatonic
+entry (A_FLAT_MINOR_PENTATONIC) but do not currently exist in
+C:\Users\DJ\Documents\piano_scales-2\voices\. Every other finger+note combo
+and every note_{Name}.wav / TODO nameAudio combo used across all 12 keys was
+checked against the existing voices/*.wav inventory and already exists.
+
+voices/f5_Ab.wav
+  - Needed for: RH ascending slot 6 (octave-repeat root, finger 5) and the
+    mirrored RH descending slot, and the "together" section's RH finger at
+    those two slots.
+  - Existing f5_*.wav files only cover C, D, A, E, G, B, F — no black-key
+    entries exist for finger 5 yet anywhere in the app (this is the first
+    scale type to need one).
+
+voices/f5_Db.wav
+  - Needed for: LH ascending slot 3 (the 4th scale degree, Db, finger 5) and
+    the mirrored LH descending slot, and the "together" section's LH finger
+    at those two slots.
+  - Same gap as above — no f5_Db.wav (or any f5_ black-key file) exists yet.
+
+Both gaps trace back to the unusual pianoscales.org fingering for Ab/G#
+minor pentatonic, which uses the 5th finger on both hands reaching the black
+keys at the top/bottom of this particular 5-note pattern (LH: 2,1,5,4,3,2 /
+RH: 2,1,2,3,4,5) — every other key in this build stays within fingers 1-4.
+See minor_pentatonic_review.md for the cross-check discussion on this
+specific fingering choice.

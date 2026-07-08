@@ -1,0 +1,32 @@
+TTS clips needed for minor_pentatonic.js nameAudio fields
+===========================================================
+
+No name-announcement clip exists yet for any of these 12 scales. Each
+nameAudio field below points at a TODO_*.wav placeholder path; record/generate
+the exact spoken text on the right and drop the file in voices/ with the
+filename shown, then swap the TODO path for the real one.
+
+File                                    Spoken text
+----------------------------------------------------------------------
+TODO_C_minor_pentatonic.wav             "C Minor Pentatonic"
+TODO_Db_minor_pentatonic.wav            "Db Minor Pentatonic"
+TODO_D_minor_pentatonic.wav             "D Minor Pentatonic"
+TODO_Eb_minor_pentatonic.wav            "Eb Minor Pentatonic"
+TODO_E_minor_pentatonic.wav             "E Minor Pentatonic"
+TODO_F_minor_pentatonic.wav             "F Minor Pentatonic"
+TODO_FSharp_minor_pentatonic.wav        "F# Minor Pentatonic"
+TODO_G_minor_pentatonic.wav             "G Minor Pentatonic"
+TODO_Ab_minor_pentatonic.wav            "Ab Minor Pentatonic"
+TODO_A_minor_pentatonic.wav             "A Minor Pentatonic"
+TODO_Bb_minor_pentatonic.wav            "Bb Minor Pentatonic"
+TODO_B_minor_pentatonic.wav             "B Minor Pentatonic"
+
+Notes:
+- Spoken text mirrors the "name" field in each object (e.g. "Db Minor
+  Pentatonic", not "C Sharp Minor Pentatonic") to stay consistent with how
+  this app already speaks its Db-labeled entries (e.g. "Db Natural Minor")
+  even though the notes are internally spelled with C#.
+- "F# Minor Pentatonic" is spoken "F Sharp Minor Pentatonic"; the filename
+  uses "FSharp" (no # character) to match the safe-filename convention this
+  app already uses elsewhere in voices/ (no existing files contain a literal
+  "#" or "b" as anything other than a flat-suffix letter).

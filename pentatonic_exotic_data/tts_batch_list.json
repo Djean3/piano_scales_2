@@ -1,0 +1,498 @@
+[
+  {
+    "file": "TODO_C_major_pentatonic.wav",
+    "text": "C Major Pentatonic"
+  },
+  {
+    "file": "TODO_Db_major_pentatonic.wav",
+    "text": "D Flat Major Pentatonic"
+  },
+  {
+    "file": "TODO_D_major_pentatonic.wav",
+    "text": "D Major Pentatonic"
+  },
+  {
+    "file": "TODO_Eb_major_pentatonic.wav",
+    "text": "E Flat Major Pentatonic"
+  },
+  {
+    "file": "TODO_E_major_pentatonic.wav",
+    "text": "E Major Pentatonic"
+  },
+  {
+    "file": "TODO_F_major_pentatonic.wav",
+    "text": "F Major Pentatonic"
+  },
+  {
+    "file": "TODO_FSharp_major_pentatonic.wav",
+    "text": "F Sharp Major Pentatonic"
+  },
+  {
+    "file": "TODO_G_major_pentatonic.wav",
+    "text": "G Major Pentatonic"
+  },
+  {
+    "file": "TODO_Ab_major_pentatonic.wav",
+    "text": "A Flat Major Pentatonic"
+  },
+  {
+    "file": "TODO_A_major_pentatonic.wav",
+    "text": "A Major Pentatonic"
+  },
+  {
+    "file": "TODO_Bb_major_pentatonic.wav",
+    "text": "B Flat Major Pentatonic"
+  },
+  {
+    "file": "TODO_B_major_pentatonic.wav",
+    "text": "B Major Pentatonic"
+  },
+  {
+    "file": "TODO_C_minor_pentatonic.wav",
+    "text": "C Minor Pentatonic"
+  },
+  {
+    "file": "TODO_Db_minor_pentatonic.wav",
+    "text": "D Flat Minor Pentatonic"
+  },
+  {
+    "file": "TODO_D_minor_pentatonic.wav",
+    "text": "D Minor Pentatonic"
+  },
+  {
+    "file": "TODO_Eb_minor_pentatonic.wav",
+    "text": "E Flat Minor Pentatonic"
+  },
+  {
+    "file": "TODO_E_minor_pentatonic.wav",
+    "text": "E Minor Pentatonic"
+  },
+  {
+    "file": "TODO_F_minor_pentatonic.wav",
+    "text": "F Minor Pentatonic"
+  },
+  {
+    "file": "TODO_FSharp_minor_pentatonic.wav",
+    "text": "F Sharp Minor Pentatonic"
+  },
+  {
+    "file": "TODO_G_minor_pentatonic.wav",
+    "text": "G Minor Pentatonic"
+  },
+  {
+    "file": "TODO_Ab_minor_pentatonic.wav",
+    "text": "A Flat Minor Pentatonic"
+  },
+  {
+    "file": "TODO_A_minor_pentatonic.wav",
+    "text": "A Minor Pentatonic"
+  },
+  {
+    "file": "TODO_Bb_minor_pentatonic.wav",
+    "text": "B Flat Minor Pentatonic"
+  },
+  {
+    "file": "TODO_B_minor_pentatonic.wav",
+    "text": "B Minor Pentatonic"
+  },
+  {
+    "file": "TODO_C_whole_tone.wav",
+    "text": "C Whole Tone"
+  },
+  {
+    "file": "TODO_C_diminished.wav",
+    "text": "C Diminished"
+  },
+  {
+    "file": "TODO_Db_whole_tone.wav",
+    "text": "D Flat Whole Tone"
+  },
+  {
+    "file": "TODO_Db_diminished.wav",
+    "text": "D Flat Diminished"
+  },
+  {
+    "file": "TODO_D_whole_tone.wav",
+    "text": "D Whole Tone"
+  },
+  {
+    "file": "TODO_D_diminished.wav",
+    "text": "D Diminished"
+  },
+  {
+    "file": "TODO_Eb_whole_tone.wav",
+    "text": "E Flat Whole Tone"
+  },
+  {
+    "file": "TODO_Eb_diminished.wav",
+    "text": "E Flat Diminished"
+  },
+  {
+    "file": "TODO_E_whole_tone.wav",
+    "text": "E Whole Tone"
+  },
+  {
+    "file": "TODO_E_diminished.wav",
+    "text": "E Diminished"
+  },
+  {
+    "file": "TODO_F_whole_tone.wav",
+    "text": "F Whole Tone"
+  },
+  {
+    "file": "TODO_F_diminished.wav",
+    "text": "F Diminished"
+  },
+  {
+    "file": "TODO_FSharp_whole_tone.wav",
+    "text": "F Sharp Whole Tone"
+  },
+  {
+    "file": "TODO_FSharp_diminished.wav",
+    "text": "F Sharp Diminished"
+  },
+  {
+    "file": "TODO_G_whole_tone.wav",
+    "text": "G Whole Tone"
+  },
+  {
+    "file": "TODO_G_diminished.wav",
+    "text": "G Diminished"
+  },
+  {
+    "file": "TODO_Ab_whole_tone.wav",
+    "text": "A Flat Whole Tone"
+  },
+  {
+    "file": "TODO_Ab_diminished.wav",
+    "text": "A Flat Diminished"
+  },
+  {
+    "file": "TODO_A_whole_tone.wav",
+    "text": "A Whole Tone"
+  },
+  {
+    "file": "TODO_A_diminished.wav",
+    "text": "A Diminished"
+  },
+  {
+    "file": "TODO_Bb_whole_tone.wav",
+    "text": "B Flat Whole Tone"
+  },
+  {
+    "file": "TODO_Bb_diminished.wav",
+    "text": "B Flat Diminished"
+  },
+  {
+    "file": "TODO_B_whole_tone.wav",
+    "text": "B Whole Tone"
+  },
+  {
+    "file": "TODO_B_diminished.wav",
+    "text": "B Diminished"
+  },
+  {
+    "file": "TODO_C_hungarian_minor.wav",
+    "text": "C Hungarian Minor"
+  },
+  {
+    "file": "TODO_C_byzantine.wav",
+    "text": "C Byzantine"
+  },
+  {
+    "file": "TODO_Db_hungarian_minor.wav",
+    "text": "D Flat Hungarian Minor"
+  },
+  {
+    "file": "TODO_Db_byzantine.wav",
+    "text": "D Flat Byzantine"
+  },
+  {
+    "file": "TODO_D_hungarian_minor.wav",
+    "text": "D Hungarian Minor"
+  },
+  {
+    "file": "TODO_D_byzantine.wav",
+    "text": "D Byzantine"
+  },
+  {
+    "file": "TODO_Eb_hungarian_minor.wav",
+    "text": "E Flat Hungarian Minor"
+  },
+  {
+    "file": "TODO_Eb_byzantine.wav",
+    "text": "E Flat Byzantine"
+  },
+  {
+    "file": "TODO_E_hungarian_minor.wav",
+    "text": "E Hungarian Minor"
+  },
+  {
+    "file": "TODO_E_byzantine.wav",
+    "text": "E Byzantine"
+  },
+  {
+    "file": "TODO_F_hungarian_minor.wav",
+    "text": "F Hungarian Minor"
+  },
+  {
+    "file": "TODO_F_byzantine.wav",
+    "text": "F Byzantine"
+  },
+  {
+    "file": "TODO_FSharp_hungarian_minor.wav",
+    "text": "F Sharp Hungarian Minor"
+  },
+  {
+    "file": "TODO_FSharp_byzantine.wav",
+    "text": "F Sharp Byzantine"
+  },
+  {
+    "file": "TODO_G_hungarian_minor.wav",
+    "text": "G Hungarian Minor"
+  },
+  {
+    "file": "TODO_G_byzantine.wav",
+    "text": "G Byzantine"
+  },
+  {
+    "file": "TODO_Ab_hungarian_minor.wav",
+    "text": "A Flat Hungarian Minor"
+  },
+  {
+    "file": "TODO_Ab_byzantine.wav",
+    "text": "A Flat Byzantine"
+  },
+  {
+    "file": "TODO_A_hungarian_minor.wav",
+    "text": "A Hungarian Minor"
+  },
+  {
+    "file": "TODO_A_byzantine.wav",
+    "text": "A Byzantine"
+  },
+  {
+    "file": "TODO_Bb_hungarian_minor.wav",
+    "text": "B Flat Hungarian Minor"
+  },
+  {
+    "file": "TODO_Bb_byzantine.wav",
+    "text": "B Flat Byzantine"
+  },
+  {
+    "file": "TODO_B_hungarian_minor.wav",
+    "text": "B Hungarian Minor"
+  },
+  {
+    "file": "TODO_B_byzantine.wav",
+    "text": "B Byzantine"
+  },
+  {
+    "file": "TODO_C_neapolitan_minor.wav",
+    "text": "C Neapolitan Minor"
+  },
+  {
+    "file": "TODO_C_enigmatic.wav",
+    "text": "C Enigmatic"
+  },
+  {
+    "file": "TODO_Db_neapolitan_minor.wav",
+    "text": "D Flat Neapolitan Minor"
+  },
+  {
+    "file": "TODO_Db_enigmatic.wav",
+    "text": "D Flat Enigmatic"
+  },
+  {
+    "file": "TODO_D_neapolitan_minor.wav",
+    "text": "D Neapolitan Minor"
+  },
+  {
+    "file": "TODO_D_enigmatic.wav",
+    "text": "D Enigmatic"
+  },
+  {
+    "file": "TODO_Eb_neapolitan_minor.wav",
+    "text": "E Flat Neapolitan Minor"
+  },
+  {
+    "file": "TODO_Eb_enigmatic.wav",
+    "text": "E Flat Enigmatic"
+  },
+  {
+    "file": "TODO_E_neapolitan_minor.wav",
+    "text": "E Neapolitan Minor"
+  },
+  {
+    "file": "TODO_E_enigmatic.wav",
+    "text": "E Enigmatic"
+  },
+  {
+    "file": "TODO_F_neapolitan_minor.wav",
+    "text": "F Neapolitan Minor"
+  },
+  {
+    "file": "TODO_F_enigmatic.wav",
+    "text": "F Enigmatic"
+  },
+  {
+    "file": "TODO_FSharp_neapolitan_minor.wav",
+    "text": "F Sharp Neapolitan Minor"
+  },
+  {
+    "file": "TODO_FSharp_enigmatic.wav",
+    "text": "F Sharp Enigmatic"
+  },
+  {
+    "file": "TODO_G_neapolitan_minor.wav",
+    "text": "G Neapolitan Minor"
+  },
+  {
+    "file": "TODO_G_enigmatic.wav",
+    "text": "G Enigmatic"
+  },
+  {
+    "file": "TODO_Ab_neapolitan_minor.wav",
+    "text": "A Flat Neapolitan Minor"
+  },
+  {
+    "file": "TODO_Ab_enigmatic.wav",
+    "text": "A Flat Enigmatic"
+  },
+  {
+    "file": "TODO_A_neapolitan_minor.wav",
+    "text": "A Neapolitan Minor"
+  },
+  {
+    "file": "TODO_A_enigmatic.wav",
+    "text": "A Enigmatic"
+  },
+  {
+    "file": "TODO_Bb_neapolitan_minor.wav",
+    "text": "B Flat Neapolitan Minor"
+  },
+  {
+    "file": "TODO_Bb_enigmatic.wav",
+    "text": "B Flat Enigmatic"
+  },
+  {
+    "file": "TODO_B_neapolitan_minor.wav",
+    "text": "B Neapolitan Minor"
+  },
+  {
+    "file": "TODO_B_enigmatic.wav",
+    "text": "B Enigmatic"
+  },
+  {
+    "file": "TODO_C_hirajoshi.wav",
+    "text": "C Hirajoshi"
+  },
+  {
+    "file": "TODO_C_spanish_gypsy.wav",
+    "text": "C Spanish Gypsy"
+  },
+  {
+    "file": "TODO_Db_hirajoshi.wav",
+    "text": "D Flat Hirajoshi"
+  },
+  {
+    "file": "TODO_Db_spanish_gypsy.wav",
+    "text": "D Flat Spanish Gypsy"
+  },
+  {
+    "file": "TODO_D_hirajoshi.wav",
+    "text": "D Hirajoshi"
+  },
+  {
+    "file": "TODO_D_spanish_gypsy.wav",
+    "text": "D Spanish Gypsy"
+  },
+  {
+    "file": "TODO_Eb_hirajoshi.wav",
+    "text": "E Flat Hirajoshi"
+  },
+  {
+    "file": "TODO_Eb_spanish_gypsy.wav",
+    "text": "E Flat Spanish Gypsy"
+  },
+  {
+    "file": "TODO_E_hirajoshi.wav",
+    "text": "E Hirajoshi"
+  },
+  {
+    "file": "TODO_E_spanish_gypsy.wav",
+    "text": "E Spanish Gypsy"
+  },
+  {
+    "file": "TODO_F_hirajoshi.wav",
+    "text": "F Hirajoshi"
+  },
+  {
+    "file": "TODO_F_spanish_gypsy.wav",
+    "text": "F Spanish Gypsy"
+  },
+  {
+    "file": "TODO_Fs_hirajoshi.wav",
+    "text": "F Sharp Hirajoshi"
+  },
+  {
+    "file": "TODO_Fs_spanish_gypsy.wav",
+    "text": "F Sharp Spanish Gypsy"
+  },
+  {
+    "file": "TODO_G_hirajoshi.wav",
+    "text": "G Hirajoshi"
+  },
+  {
+    "file": "TODO_G_spanish_gypsy.wav",
+    "text": "G Spanish Gypsy"
+  },
+  {
+    "file": "TODO_Ab_hirajoshi.wav",
+    "text": "A Flat Hirajoshi"
+  },
+  {
+    "file": "TODO_Ab_spanish_gypsy.wav",
+    "text": "A Flat Spanish Gypsy"
+  },
+  {
+    "file": "TODO_A_hirajoshi.wav",
+    "text": "A Hirajoshi"
+  },
+  {
+    "file": "TODO_A_spanish_gypsy.wav",
+    "text": "A Spanish Gypsy"
+  },
+  {
+    "file": "TODO_Bb_hirajoshi.wav",
+    "text": "B Flat Hirajoshi"
+  },
+  {
+    "file": "TODO_Bb_spanish_gypsy.wav",
+    "text": "B Flat Spanish Gypsy"
+  },
+  {
+    "file": "TODO_B_hirajoshi.wav",
+    "text": "B Hirajoshi"
+  },
+  {
+    "file": "TODO_B_spanish_gypsy.wav",
+    "text": "B Spanish Gypsy"
+  },
+  {
+    "file": "f5_Gs.wav",
+    "text": "5, G Sharp"
+  },
+  {
+    "file": "f3_Fb.wav",
+    "text": "3, F Flat"
+  },
+  {
+    "file": "f5_Fs.wav",
+    "text": "5, F Sharp"
+  },
+  {
+    "file": "f4_Cb.wav",
+    "text": "4, C Flat"
+  }
+]

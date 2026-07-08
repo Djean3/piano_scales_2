@@ -1,0 +1,38 @@
+Needed name-announcement audio clips for Hungarian Minor + Byzantine scales
+=============================================================================
+No TTS clip exists yet for any of these 24 scale names. Each nameAudio field
+in hungarian_byzantine.js currently points at a TODO_*.wav placeholder path
+that does not exist on disk. Record/generate one clip per line below (path
+on the left is exactly what's referenced in the generated data; spoken text
+on the right is what that clip should say).
+
+V + "TODO_C_hungarian_minor.wav"     -> spoken: "C Hungarian Minor"
+V + "TODO_C_byzantine.wav"           -> spoken: "C Byzantine"
+V + "TODO_Db_hungarian_minor.wav"    -> spoken: "D Flat Hungarian Minor"
+V + "TODO_Db_byzantine.wav"          -> spoken: "D Flat Byzantine"
+V + "TODO_D_hungarian_minor.wav"     -> spoken: "D Hungarian Minor"
+V + "TODO_D_byzantine.wav"           -> spoken: "D Byzantine"
+V + "TODO_Eb_hungarian_minor.wav"    -> spoken: "E Flat Hungarian Minor"
+V + "TODO_Eb_byzantine.wav"          -> spoken: "E Flat Byzantine"
+V + "TODO_E_hungarian_minor.wav"     -> spoken: "E Hungarian Minor"
+V + "TODO_E_byzantine.wav"           -> spoken: "E Byzantine"
+V + "TODO_F_hungarian_minor.wav"     -> spoken: "F Hungarian Minor"
+V + "TODO_F_byzantine.wav"           -> spoken: "F Byzantine"
+V + "TODO_FSharp_hungarian_minor.wav" -> spoken: "F Sharp Hungarian Minor"
+V + "TODO_FSharp_byzantine.wav"      -> spoken: "F Sharp Byzantine"
+V + "TODO_G_hungarian_minor.wav"     -> spoken: "G Hungarian Minor"
+V + "TODO_G_byzantine.wav"           -> spoken: "G Byzantine"
+V + "TODO_Ab_hungarian_minor.wav"    -> spoken: "A Flat Hungarian Minor"
+V + "TODO_Ab_byzantine.wav"          -> spoken: "A Flat Byzantine"
+V + "TODO_A_hungarian_minor.wav"     -> spoken: "A Hungarian Minor"
+V + "TODO_A_byzantine.wav"           -> spoken: "A Byzantine"
+V + "TODO_Bb_hungarian_minor.wav"    -> spoken: "B Flat Hungarian Minor"
+V + "TODO_Bb_byzantine.wav"          -> spoken: "B Flat Byzantine"
+V + "TODO_B_hungarian_minor.wav"     -> spoken: "B Hungarian Minor"
+V + "TODO_B_byzantine.wav"           -> spoken: "B Byzantine"
+
+(24 clips total: 12 keys x 2 scale types, matching the naming style of this
+project's existing numbered clips, e.g. "50_FSharp_Major.wav" for F# Major.
+These new ones intentionally have no number prefix since they weren't part
+of the original 58-scale recording pass — renumber/reprefix at integration
+time if the app's audio-loading code expects a specific prefix scheme.)

@@ -1,0 +1,29 @@
+Missing voice clips needed by major_pentatonic.js
+==================================================
+Checked against the full contents of voices/*.wav (308 files) as of 2026-07-08.
+Method: f1_*.wav through f4_*.wav exist for all 19 note-name spellings
+(naturals, sharps, and flats). f5_*.wav ONLY exists for the 7 natural note
+names (A, B, C, D, E, F, G) — there is no f5_*.wav for any sharp/flat note.
+
+Every key's pentatonic fingering was checked against this. Only B Major
+Pentatonic hits the gap, because its fingering (confirmed correct via
+WebFetch cross-check against pianoscales.org) puts finger 5 on an
+accidental in both hands:
+
+voices/f5_Gs.wav
+  - Needed by: B Major Pentatonic, RH, ascending 5th note (G#, finger 5)
+    and its mirrored descending occurrence, and the "together" section's
+    RH finger in those same two slots (fingers: [5, 2]).
+  - Spoken content should be: "five, G sharp" (matching the pattern of
+    existing f5_*.wav clips, e.g. f5_A.wav / f5_G.wav).
+
+voices/f5_Cs.wav
+  - Needed by: B Major Pentatonic, LH, ascending 2nd note (C#, finger 5)
+    and its mirrored descending occurrence, and the "together" section's
+    LH finger in those same two slots (fingers: [2, 5]).
+  - Spoken content should be: "five, C sharp".
+
+No other key/hand combination in this build hits a missing-audio gap —
+every other finger+note combination used (fingers 1-4 on any of the 12
+pitch classes, or finger 5 on a natural) already has a corresponding file
+in voices/.

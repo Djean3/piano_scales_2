@@ -1,0 +1,6 @@
+f5_Fs.wav | "5, F♯"
+f5_Cs.wav | "5, C♯"
+f5_Gs.wav | "5, G♯"
+f5_Ds.wav | "5, D♯"
+f5_As.wav | "5, A♯"
+f3_As.wav | "3, A♯"

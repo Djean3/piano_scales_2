@@ -1,0 +1,23 @@
+Needed nameAudio TTS clips for major_pentatonic.js
+==================================================
+No name-announcement clip exists yet for any of these 12 scales. Each
+entry below lists the placeholder filename written into the data (under
+voices/) and the exact spoken text it should contain.
+
+TODO_C_major_pentatonic.wav       -> "C Major Pentatonic"
+TODO_Db_major_pentatonic.wav      -> "Db Major Pentatonic"
+TODO_D_major_pentatonic.wav       -> "D Major Pentatonic"
+TODO_Eb_major_pentatonic.wav      -> "Eb Major Pentatonic"
+TODO_E_major_pentatonic.wav       -> "E Major Pentatonic"
+TODO_F_major_pentatonic.wav       -> "F Major Pentatonic"
+TODO_FSharp_major_pentatonic.wav  -> "F# Major Pentatonic"
+TODO_G_major_pentatonic.wav       -> "G Major Pentatonic"
+TODO_Ab_major_pentatonic.wav      -> "Ab Major Pentatonic"
+TODO_A_major_pentatonic.wav       -> "A Major Pentatonic"
+TODO_Bb_major_pentatonic.wav      -> "Bb Major Pentatonic"
+TODO_B_major_pentatonic.wav       -> "B Major Pentatonic"
+
+Naming note: the TODO filename for F# uses "FSharp" (not "Fs"), matching
+the existing convention for nameAudio clips in data.js (e.g.
+"50_FSharp_Major.wav", "51_FSharp_Natural_Minor.wav") as opposed to the
+"Fs" convention used for per-note voiceAudio clips (e.g. "f3_Fs.wav").

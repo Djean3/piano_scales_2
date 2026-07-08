@@ -1,0 +1,7 @@
+f3_As.wav | "3, A sharp"
+f5_As.wav | "5, A sharp"
+f5_Bb.wav | "5, B flat"
+f5_Cs.wav | "5, C sharp"
+f5_Ds.wav | "5, D sharp"
+f5_Fs.wav | "5, F sharp"
+f5_Gs.wav | "5, G sharp"
