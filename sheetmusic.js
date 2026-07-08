@@ -20,11 +20,16 @@ function noteNameFromAudio(voiceAudio) {
   return part;
 }
 
-function sm_midiToVexKey(midi) {
+// Splits a resolved note name (e.g. "F#", "Bb", "C") into its bare letter and
+// accidental ("#", "b", or null), falling back to the natural letter for the
+// pitch class when no note name could be resolved.
+function sm_noteNameParts(noteName, midi) {
+  if (noteName) {
+    const m = noteName.match(/^([A-G])(#|b)?$/);
+    if (m) return { letter: m[1], accidental: m[2] || null };
+  }
   const pc = ((midi % 12) + 12) % 12;
-  const letter = SM_PC_LETTER[pc].toLowerCase();
-  const octave = Math.floor(midi / 12) - 1;
-  return `${letter}/${octave}`;
+  return { letter: SM_PC_LETTER[pc], accidental: null };
 }
 
 const SheetMusic = (() => {
@@ -69,9 +74,16 @@ const SheetMusic = (() => {
   }
 
   function makeClefNote(VF, midi, clef, noteName) {
-    const note = new VF.StaveNote({ clef, keys: [sm_midiToVexKey(midi)], duration: "q" });
-    const pc = ((midi % 12) + 12) % 12;
-    const label = noteName || SM_PC_LETTER[pc];
+    // VexFlow only draws a sharp/flat glyph (and only tells two notes with the
+    // same natural-letter bucket apart, e.g. F vs F#) when the accidental is
+    // both present in the key string AND registered via addAccidental — a
+    // bare "f/4" key renders identically whether the real note is F or F#.
+    const { letter, accidental } = sm_noteNameParts(noteName, midi);
+    const octave = Math.floor(midi / 12) - 1;
+    const key = accidental ? `${letter.toLowerCase()}${accidental}/${octave}` : `${letter.toLowerCase()}/${octave}`;
+    const note = new VF.StaveNote({ clef, keys: [key], duration: "q" });
+    if (accidental) note.addAccidental(0, new VF.Accidental(accidental));
+    const label = noteName || letter;
     note.addAnnotation(
       0,
       new VF.Annotation(label)
