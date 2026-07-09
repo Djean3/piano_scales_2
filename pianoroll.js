@@ -20,7 +20,7 @@ const PianoRoll = (() => {
   // instead of continuing to squeeze every key into the panel width.
   const MIN_WHITE_KEY_WIDTH = 26;
 
-  function render(container, minMidi = PIANO_ROLL_MIN, maxMidi = PIANO_ROLL_MAX) {
+  function render(container, minMidi = PIANO_ROLL_MIN, maxMidi = PIANO_ROLL_MAX, coreMin, coreMax) {
     rootEl = container;
     rootEl.innerHTML = "";
 
@@ -86,6 +86,58 @@ const PianoRoll = (() => {
     wrap.appendChild(overlay);
 
     rootEl.appendChild(wrap);
+
+    // Board is only wider than the wrap when keys hit MIN_WHITE_KEY_WIDTH
+    // (see above) -- in that case, default scroll position 0 shows the
+    // left edge of the padded display range instead of the scale's own
+    // notes. Center on the scale's real range (coreMin/coreMax) instantly,
+    // not smoothly -- this is the initial paint, not a followed transition.
+    if (coreMin != null && coreMax != null) {
+      centerOn([coreMin, coreMax], { smooth: false, force: true });
+    }
+  }
+
+  // x-position of a key's horizontal center, relative to .piano-roll-board
+  // (board is position:relative, so offsetLeft is stable layout geometry
+  // regardless of the 3D scale()/rotateX() transform's purely visual effect).
+  function keyCenterX(midi) {
+    const board = rootEl && rootEl.querySelector(".piano-roll-board");
+    const key = board && board.querySelector(`.piano-key[data-midi="${midi}"]`);
+    if (!key) return null;
+    return key.offsetLeft + key.offsetWidth / 2;
+  }
+
+  // Scrolls .piano-roll-wrap so the given midi note(s) sit centered.
+  // force=true always scrolls (used on initial render). Otherwise only
+  // scrolls when the target has drifted outside a comfortable middle zone
+  // of the current viewport -- "stay centered and move when needed," not a
+  // jittery re-center on every single note during playback.
+  function centerOn(midis, { smooth = true, force = false } = {}) {
+    const wrap = rootEl && rootEl.querySelector(".piano-roll-wrap");
+    const board = rootEl && rootEl.querySelector(".piano-roll-board");
+    if (!wrap || !board) return;
+    const xs = midis.map(keyCenterX).filter((x) => x != null);
+    if (!xs.length) return;
+    const targetX = (Math.min(...xs) + Math.max(...xs)) / 2;
+    const wrapWidth = wrap.clientWidth;
+    const maxScroll = Math.max(0, board.offsetWidth - wrapWidth);
+    if (maxScroll <= 0) return; // nothing to scroll -- board already fits/fills the wrap
+    const desiredScroll = Math.min(maxScroll, Math.max(0, targetX - wrapWidth / 2));
+    if (!force) {
+      const visibleX = targetX - wrap.scrollLeft;
+      const margin = wrapWidth * 0.225;
+      if (visibleX > margin && visibleX < wrapWidth - margin) return;
+    }
+    if (smooth) {
+      wrap.scrollTo({ left: desiredScroll, behavior: "smooth" });
+    } else {
+      // Direct assignment is always instant regardless of CSS
+      // scroll-behavior -- scrollTo(behavior:"auto") would defer to that
+      // CSS property instead of actually jumping immediately. (There is
+      // no CSS scroll-behavior:smooth on .piano-roll-wrap for exactly
+      // this reason -- it fought with rapid back-to-back calls here.)
+      wrap.scrollLeft = desiredScroll;
+    }
   }
 
   // Animates an arc between two keys for a "Cross Over" / "Cross Under" cue.
@@ -151,6 +203,10 @@ const PianoRoll = (() => {
     if (keys.length) {
       void rootEl.offsetWidth; // force reflow so the "hit" animation always restarts
       keys.forEach((key) => key.classList.add("hit"));
+      // Follow playback when the current note(s) drift out of the
+      // comfortable middle zone -- see centerOn's force=false comfort-zone
+      // check. A no-op whenever the board already fits/fills the wrap.
+      centerOn(notes.map((n) => n.midi));
     }
   }
 

@@ -31,7 +31,10 @@ function scalePitchRange(scale) {
   // doubling that up with another full octave on each side forced heavy
   // horizontal scrolling. Taper the padding down as the native range grows.
   const pad = nativeSpan > 36 ? 4 : nativeSpan > 24 ? 8 : 12;
-  return { min: loC - pad, max: hi + pad };
+  // coreMin/coreMax (the scale's own unpadded range) let the piano roll
+  // center its initial scroll on the notes actually in play, rather than
+  // the padded display range dumping the view left-aligned at scroll 0.
+  return { min: loC - pad, max: hi + pad, coreMin: loC, coreMax: hi };
 }
 
 function labelFromAudio(path) {
@@ -696,7 +699,7 @@ async function ensureLoaded() {
   const scale = currentScale();
   seq = buildSequence(scale);
   const range = scalePitchRange(scale);
-  PianoRoll.render(document.getElementById("piano-roll"), range.min, range.max);
+  PianoRoll.render(document.getElementById("piano-roll"), range.min, range.max, range.coreMin, range.coreMax);
   SheetMusic.init(document.getElementById("sheet-music"), scale);
   await Promise.all([
     pianoReady,
@@ -892,6 +895,22 @@ function onScaleSelectionChanged() {
 }
 scaleSelect.addEventListener("change", onScaleSelectionChanged);
 scaleTypeSelect.addEventListener("change", onScaleSelectionChanged);
+
+// Auto-apply: everything about a scale change (availability, scale info,
+// piano roll, sheet music) already re-renders live on <select> change --
+// Apply's only remaining job was dismissing the popout, which forced an
+// extra click after a selection that had already visibly taken effect.
+// Close automatically a beat after the last change, short enough to feel
+// instant but long enough to pick Root Note and Scale Type in one visit
+// to the panel without it closing mid-selection. Apply still works too,
+// for anyone who prefers an explicit confirm.
+let autoApplyCloseTimer = null;
+function scheduleAutoApplyClose() {
+  clearTimeout(autoApplyCloseTimer);
+  autoApplyCloseTimer = setTimeout(closeAllPopouts, 450);
+}
+scaleSelect.addEventListener("change", scheduleAutoApplyClose);
+scaleTypeSelect.addEventListener("change", scheduleAutoApplyClose);
 
 // Subdivision changes don't reschedule — the permanent 16n callback reads
 // toggleSubdivision.value live. Just reset the beat counter so accents land on
@@ -1270,7 +1289,7 @@ function renderVisualsForCurrentScale() {
   const sheetMusicEl = document.getElementById("sheet-music");
   if (!scale || !pianoRollEl || !sheetMusicEl) return;
   const range = scalePitchRange(scale);
-  PianoRoll.render(pianoRollEl, range.min, range.max);
+  PianoRoll.render(pianoRollEl, range.min, range.max, range.coreMin, range.coreMax);
   SheetMusic.init(sheetMusicEl, scale);
   // SheetMusic.init() builds every section hidden (display:none) -- normally
   // a section only becomes visible once playback reaches a slot tagged with

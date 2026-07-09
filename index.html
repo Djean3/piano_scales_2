@@ -364,16 +364,22 @@
   .field-hint { display: block; margin-top: 7px; font-size: 0.68rem; color: var(--muted); }
 
   /* ── Stage: sheet music + piano + transport ── */
-  .stage { margin-top: 18px; position: relative; }
-  /* Holographic projection surface -- dark glass with a faint cyan grid
-     instead of solid ink-on-paper, so the score reads as a HUD readout
-     rather than a document. */
-  .sheet-music-panel {
+  /* Holographic projection surface -- one continuous cyan grid across the
+     whole stage (sheet music + piano), not two separately-positioned grids
+     that would mismatch at the panel seam. sheet-music-panel and
+     piano-panel below are transparent so this shows through both. */
+  .stage {
     position: relative;
+    margin-top: 18px;
     background:
       linear-gradient(rgba(var(--accent-rgb),0.05) 1px, transparent 1px) 0 0 / 100% 24px,
       linear-gradient(90deg, rgba(var(--accent-rgb),0.05) 1px, transparent 1px) 0 0 / 24px 100%,
       var(--sheet-bg);
+    border-radius: 16px;
+  }
+  .sheet-music-panel {
+    position: relative;
+    background: transparent;
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border-radius: 16px 16px 0 0;
@@ -391,12 +397,12 @@
 
   .piano-panel {
     position: relative;
-    background: var(--bg);
+    background: transparent;
     border-radius: 0 0 16px 16px;
     padding: 18px 18px 22px;
     border: 1px solid var(--glass-border);
     border-top: none;
-    box-shadow: inset 0 6px 18px rgba(0,0,0,0.4), var(--glow-soft);
+    box-shadow: inset 0 6px 18px rgba(0,0,0,0.25), var(--glow-soft);
   }
 
   /* Cross arcs */
@@ -419,7 +425,19 @@
     perspective: 1600px;
     perspective-origin: 50% 0%;
     overflow-x: auto;
+    /* No CSS scroll-behavior:smooth here -- centerOn() in pianoroll.js
+       explicitly requests smooth vs instant per-call (instant on initial
+       render, smooth when following playback); a blanket CSS smooth
+       fought with the instant case, since scrollTo(behavior:"auto") and
+       even direct scrollLeft assignment both got dragged toward a stale
+       in-flight animation target under rapid back-to-back calls. */
+    /* Scrolling itself stays functional (touch swipe, programmatic
+       centerOn) -- only the visible OS scrollbar track is hidden, which
+       read as a raw, unstyled "sloppy" artifact under an otherwise fully
+       custom HUD surface. */
+    scrollbar-width: none;
   }
+  .piano-roll-wrap::-webkit-scrollbar { display: none; }
   .piano-roll-cross-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
   .piano-roll-board {
     position: relative; display: flex; height: var(--piano-height);
@@ -763,8 +781,10 @@
     .quick-hand-swap { order: 1; flex-basis: 100%; justify-content: center; margin-top: 2px; }
     .quick-hand-swap .pill { padding: 9px 16px; }
     .transport-spacer { display: none; }
-    .quick-tempo { order: 2; }
     .transport-session { order: 2; }
+    /* Tempo pushed to the right edge of the row (timer stays left) --
+       previously both sat centered together with no clear separation. */
+    .quick-tempo { order: 3; margin-left: auto; }
     .transport-volume { order: 3; flex-basis: 100%; justify-content: center; margin-left: 0; }
     #master-volume { width: 140px; }
   }
