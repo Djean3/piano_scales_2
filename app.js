@@ -1067,6 +1067,25 @@ document.querySelectorAll(".nav-btn").forEach((btn) => {
     else openPopout(panel);
   });
 });
+
+// Native <select> popup rendering is OS-level chrome no page script can
+// reach or animate. What IS real and animatable is the control itself --
+// a HUD "scan activation" glow pulse via Motion when the dropdown opens
+// (mousedown, right before the native list appears) and a settle pulse
+// when a choice lands (change). Respects prefers-reduced-motion, and is a
+// no-op if Motion failed to load from its CDN.
+document.querySelectorAll("select").forEach((sel) => {
+  const pulse = (strength) => {
+    if (typeof Motion === "undefined" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    Motion.animate(
+      sel,
+      { boxShadow: [`0 0 0 rgba(34,229,255,0)`, `0 0 ${strength}px rgba(34,229,255,0.55)`, `0 0 0 rgba(34,229,255,0)`] },
+      { duration: 0.5, easing: "ease-out" }
+    );
+  };
+  sel.addEventListener("mousedown", () => pulse(14));
+  sel.addEventListener("change", () => pulse(20));
+});
 document.querySelectorAll("[data-close-panel]").forEach((btn) => {
   btn.addEventListener("click", closeAllPopouts);
 });
