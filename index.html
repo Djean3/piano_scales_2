@@ -776,16 +776,22 @@
     .quick-tempo-unit,
     .transport-session span:first-child { display: none; }
     /* Primary transport controls (restart/play/stop/loop) keep the top row;
-       hand-swap and volume get their own full-width rows underneath instead
-       of cramming into one line with sub-44px targets (P2). */
-    .quick-hand-swap { order: 1; flex-basis: 100%; justify-content: center; margin-top: 2px; }
+       tempo/hand-swap/timer/volume each get their own full-width row
+       underneath instead of cramming into one line with sub-44px targets
+       (P2). Tempo comes immediately after the button row -- directly
+       under Play, not sharing a row off to the side with the timer.
+       No flex-basis:100% here (unlike the others below): quick-tempo has
+       its own visible pill background, and forcing its box to 100% width
+       would stretch that pill into a giant bar with the controls merely
+       centered inside it. margin:auto centers the intrinsically-sized
+       pill on its own line instead, since nothing else shares that line
+       (quick-hand-swap right after it is unconditionally full-width). */
+    .quick-tempo { order: 1; margin: 2px auto 0; }
+    .quick-hand-swap { order: 2; flex-basis: 100%; justify-content: center; margin-top: 2px; }
     .quick-hand-swap .pill { padding: 9px 16px; }
     .transport-spacer { display: none; }
-    .transport-session { order: 2; }
-    /* Tempo pushed to the right edge of the row (timer stays left) --
-       previously both sat centered together with no clear separation. */
-    .quick-tempo { order: 3; margin-left: auto; }
-    .transport-volume { order: 3; flex-basis: 100%; justify-content: center; margin-left: 0; }
+    .transport-session { order: 3; flex-basis: 100%; justify-content: center; margin-top: 2px; }
+    .transport-volume { order: 4; flex-basis: 100%; justify-content: center; margin-left: 0; }
     #master-volume { width: 140px; }
   }
 
