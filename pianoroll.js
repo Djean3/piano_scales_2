@@ -15,6 +15,11 @@ const PianoRoll = (() => {
     return ((midi % 12) + 12) % 12;
   }
 
+  // Below this, white keys stop reading as piano keys and turn into an
+  // illegible sliver -- past that point the board scrolls horizontally
+  // instead of continuing to squeeze every key into the panel width.
+  const MIN_WHITE_KEY_WIDTH = 26;
+
   function render(container, minMidi = PIANO_ROLL_MIN, maxMidi = PIANO_ROLL_MAX) {
     rootEl = container;
     rootEl.innerHTML = "";
@@ -47,6 +52,12 @@ const PianoRoll = (() => {
 
     const whiteCount = whiteIndex;
     board.appendChild(whiteRow);
+
+    const availableWidth = rootEl.clientWidth || 800;
+    const naturalKeyWidth = availableWidth / whiteCount;
+    if (naturalKeyWidth < MIN_WHITE_KEY_WIDTH) {
+      board.style.width = `${MIN_WHITE_KEY_WIDTH * whiteCount}px`;
+    }
 
     const whiteWidthPct = 100 / whiteCount;
     const blackWidthPct = whiteWidthPct * 0.62;

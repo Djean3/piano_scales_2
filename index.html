@@ -79,14 +79,6 @@
     align-items: center;
     gap: 18px;
   }
-  .hamburger-btn {
-    display: flex; align-items: center; justify-content: center;
-    width: 38px; height: 38px; flex-shrink: 0;
-    border-radius: 10px; background: transparent; border: 1px solid transparent;
-    color: var(--muted); cursor: pointer; transition: background 0.15s, color 0.15s;
-  }
-  .hamburger-btn:hover { background: var(--surface-2); color: var(--text); }
-
   .tool-nav {
     display: flex;
     gap: 6px;
@@ -399,6 +391,7 @@
     padding: 14px 0 40px;
     perspective: 1600px;
     perspective-origin: 50% 0%;
+    overflow-x: auto;
   }
   .piano-roll-cross-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
   .piano-roll-board {
@@ -699,8 +692,13 @@
     --nav-icon:     16px;
     --nav-padding:  6px 7px;
   }
-  html[data-size="mobile"] .header-row { gap: 8px; padding: 10px 12px; }
-  html[data-size="mobile"] .status-card { min-width: 0; padding: 6px 10px; }
+  html[data-size="mobile"] .header-row { gap: 6px; padding: 10px 12px; flex-wrap: wrap; }
+  html[data-size="mobile"] .tool-nav { order: 1; flex-basis: 100%; justify-content: flex-start; }
+  html[data-size="mobile"] .status-card {
+    order: 2; flex-basis: 100%; min-width: 0; width: 100%;
+    flex-direction: row; align-items: baseline; justify-content: center; gap: 8px;
+    padding: 5px 10px;
+  }
   html[data-size="mobile"] .status-card-loop { display: none; }
   html[data-size="mobile"] .shell { padding: 0 10px 30px; }
   html[data-size="mobile"] .popout { padding: 14px 14px; }
@@ -714,10 +712,6 @@
 <body>
 <header class="app-header">
   <div class="header-row">
-    <button class="hamburger-btn" id="hamburger-btn" title="Menu" aria-label="Menu">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
-
     <nav class="tool-nav">
       <button class="nav-btn active" data-panel="scale">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>
