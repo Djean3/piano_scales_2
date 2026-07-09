@@ -4898,7 +4898,7 @@ const F_SHARP_MAJOR = {
       "octave), and the left hand starts right on the tonic with the 4th finger, the same shape " +
       "confirmed for B major.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Classical", "Jazz"],
@@ -7556,10 +7556,10 @@ const B_LYDIAN = {
   info: {
     typeLabel: "Lydian mode",
     description: "Major scale with a raised 4th degree — a dreamy, floating sound heard in film scores and dreamy pop.",
-    advanced: "Lydian is a mode of the major scale — the same 7 notes as F# Major, just starting and ending on B. Interval pattern: Whole, Whole, Whole, Half, Whole, Whole, Half. Fingering reuses B Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
+    advanced: "Lydian is a mode of the major scale — the same 7 notes as F♯ Major, just starting and ending on B. Interval pattern: Whole, Whole, Whole, Half, Whole, Whole, Half. Fingering reuses B Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
     keyInfo: {
-      signature: "Same notes as F# Major, rooted on B",
-      relative: "F# Major",
+      signature: "Same notes as F♯ Major, rooted on B",
+      relative: "F♯ Major",
       parallel: "B Major",
       genres: ["Film Score", "Dream Pop", "Fusion"],
     },
@@ -7838,11 +7838,11 @@ const F_SHARP_DORIAN = {
   info: {
     typeLabel: "Dorian mode",
     description: "Natural minor with a raised 6th degree — a jazzy, slightly brighter minor sound heard in funk, jazz, and modal rock.",
-    advanced: "Dorian is a mode of the major scale — the same 7 notes as E Major, just starting and ending on F#. Interval pattern: Whole, Half, Whole, Whole, Whole, Half, Whole. Fingering reuses F# Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
+    advanced: "Dorian is a mode of the major scale — the same 7 notes as E Major, just starting and ending on F♯. Interval pattern: Whole, Half, Whole, Whole, Whole, Half, Whole. Fingering reuses F♯ Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
     keyInfo: {
       signature: "Same notes as E Major, rooted on F#",
       relative: "E Major",
-      parallel: "F# Major",
+      parallel: "F♯ Major",
       genres: ["Jazz", "Funk", "Modal Rock"],
     },
     degrees: {
@@ -7932,11 +7932,11 @@ const F_SHARP_PHRYGIAN = {
   info: {
     typeLabel: "Phrygian mode",
     description: "Natural minor with a lowered 2nd degree — a dark, Spanish/flamenco-tinged minor sound.",
-    advanced: "Phrygian is a mode of the major scale — the same 7 notes as D Major, just starting and ending on F#. Interval pattern: Half, Whole, Whole, Whole, Half, Whole, Whole. Fingering reuses F# Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
+    advanced: "Phrygian is a mode of the major scale — the same 7 notes as D Major, just starting and ending on F♯. Interval pattern: Half, Whole, Whole, Whole, Half, Whole, Whole. Fingering reuses F♯ Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
     keyInfo: {
       signature: "Same notes as D Major, rooted on F#",
       relative: "D Major",
-      parallel: "F# Major",
+      parallel: "F♯ Major",
       genres: ["Flamenco", "Metal", "Film Score"],
     },
     degrees: {
@@ -8026,11 +8026,11 @@ const F_SHARP_LYDIAN = {
   info: {
     typeLabel: "Lydian mode",
     description: "Major scale with a raised 4th degree — a dreamy, floating sound heard in film scores and dreamy pop.",
-    advanced: "Lydian is a mode of the major scale — the same 7 notes as C# Major, just starting and ending on F#. Interval pattern: Whole, Whole, Whole, Half, Whole, Whole, Half. Fingering reuses F# Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
+    advanced: "Lydian is a mode of the major scale — the same 7 notes as C♯ Major, just starting and ending on F♯. Interval pattern: Whole, Whole, Whole, Half, Whole, Whole, Half. Fingering reuses F♯ Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
     keyInfo: {
-      signature: "Same notes as C# Major, rooted on F#",
+      signature: "Same notes as C♯ Major, rooted on F♯",
       relative: "C# Major",
-      parallel: "F# Major",
+      parallel: "F♯ Major",
       genres: ["Film Score", "Dream Pop", "Fusion"],
     },
     degrees: {
@@ -8120,11 +8120,11 @@ const F_SHARP_MIXOLYDIAN = {
   info: {
     typeLabel: "Mixolydian mode",
     description: "Major scale with a lowered 7th degree — a bluesy, dominant-7th sound heard throughout rock, funk, and blues.",
-    advanced: "Mixolydian is a mode of the major scale — the same 7 notes as B Major, just starting and ending on F#. Interval pattern: Whole, Whole, Half, Whole, Whole, Half, Whole. Fingering reuses F# Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
+    advanced: "Mixolydian is a mode of the major scale — the same 7 notes as B Major, just starting and ending on F♯. Interval pattern: Whole, Whole, Half, Whole, Whole, Half, Whole. Fingering reuses F♯ Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
     keyInfo: {
       signature: "Same notes as B Major, rooted on F#",
       relative: "B Major",
-      parallel: "F# Major",
+      parallel: "F♯ Major",
       genres: ["Blues", "Rock", "Funk"],
     },
     degrees: {
@@ -8214,11 +8214,11 @@ const F_SHARP_LOCRIAN = {
   info: {
     typeLabel: "Locrian mode",
     description: "A rarely-used minor mode with lowered 2nd AND 5th degrees — unstable and dissonant, since it has no perfect 5th above the root.",
-    advanced: "Locrian is a mode of the major scale — the same 7 notes as G Major, just starting and ending on F#. Interval pattern: Half, Whole, Whole, Half, Whole, Whole, Whole. Fingering reuses F# Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
+    advanced: "Locrian is a mode of the major scale — the same 7 notes as G Major, just starting and ending on F♯. Interval pattern: Half, Whole, Whole, Half, Whole, Whole, Whole. Fingering reuses F♯ Major's own confirmed hand shape (both hands), since the physical thumb-crossing positions are the same regardless of which mode starts there.",
     keyInfo: {
       signature: "Same notes as G Major, rooted on F#",
       relative: "G Major",
-      parallel: "F# Major",
+      parallel: "F♯ Major",
       genres: ["Metal", "Experimental Jazz", "Atonal"],
     },
     degrees: {
@@ -18010,7 +18010,7 @@ const FS_MAJOR_ARPEGGIO = {
     typeLabel: "Major scale arpeggio (root position)",
     description: "Two-octave major triad arpeggio in root position, outlining the tonic chord across the keyboard.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Classical", "Jazz"],
@@ -18104,7 +18104,7 @@ const FS_MAJOR_ARPEGGIO_1ST_INV = {
     typeLabel: "Major scale arpeggio (1st inversion)",
     description: "Two-octave major triad arpeggio in first inversion position, outlining the tonic chord across the keyboard.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Classical", "Jazz"],
@@ -18198,7 +18198,7 @@ const FS_MAJOR_ARPEGGIO_2ND_INV = {
     typeLabel: "Major scale arpeggio (2nd inversion)",
     description: "Two-octave major triad arpeggio in second inversion position, outlining the tonic chord across the keyboard.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Classical", "Jazz"],
@@ -18292,7 +18292,7 @@ const FS_DOM7 = {
     typeLabel: "Dominant 7th arpeggio (root position)",
     description: "Two-octave dominant 7th arpeggio in root position, built on the 5th scale degree of F# major.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Classical", "Jazz"],
@@ -18398,7 +18398,7 @@ const FS_DOM7_1ST_INV = {
     typeLabel: "Dominant 7th arpeggio (first inversion)",
     description: "Two-octave dominant 7th arpeggio in first inversion, built on the 5th scale degree of F# major.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Classical", "Jazz"],
@@ -18504,7 +18504,7 @@ const FS_DOM7_2ND_INV = {
     typeLabel: "Dominant 7th arpeggio (second inversion)",
     description: "Two-octave dominant 7th arpeggio in second inversion, built on the 5th scale degree of F# major.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Classical", "Jazz"],
@@ -18610,7 +18610,7 @@ const FS_DOM7_3RD_INV = {
     typeLabel: "Dominant 7th arpeggio (third inversion)",
     description: "Two-octave dominant 7th arpeggio in third inversion, built on the 5th scale degree of F# major.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Classical", "Jazz"],
@@ -26452,7 +26452,7 @@ const F_SHARP_MAJOR_PENTATONIC = {
       "the most tension-heavy notes — leaves the \"no wrong notes\" scale, ubiquitous in blues, " +
       "rock, country, and pop soloing.",
     keyInfo: {
-      signature: "6 sharps — F♯, G♯, A♯, C♯, D♯, and E♯",
+      signature: "6 sharps — F♯, C♯, G♯, D♯, A♯, and E♯",
       relative: "D♯ minor",
       parallel: "F♯ minor",
       genres: ["Blues", "Rock", "Country", "Folk"],
