@@ -32438,8 +32438,8 @@ const C_ENIGMATIC = {
   nameAudio: V + "C_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -32620,8 +32620,8 @@ const D_FLAT_ENIGMATIC = {
   nameAudio: V + "Db_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -32802,8 +32802,8 @@ const D_ENIGMATIC = {
   nameAudio: V + "D_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -32984,8 +32984,8 @@ const E_FLAT_ENIGMATIC = {
   nameAudio: V + "Eb_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -33166,8 +33166,8 @@ const E_ENIGMATIC = {
   nameAudio: V + "E_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -33348,8 +33348,8 @@ const F_ENIGMATIC = {
   nameAudio: V + "F_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -33530,8 +33530,8 @@ const F_SHARP_ENIGMATIC = {
   nameAudio: V + "FSharp_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -33712,8 +33712,8 @@ const G_ENIGMATIC = {
   nameAudio: V + "G_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -33894,8 +33894,8 @@ const A_FLAT_ENIGMATIC = {
   nameAudio: V + "Ab_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -34076,8 +34076,8 @@ const A_ENIGMATIC = {
   nameAudio: V + "A_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -34258,8 +34258,8 @@ const B_FLAT_ENIGMATIC = {
   nameAudio: V + "Bb_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
@@ -34440,8 +34440,8 @@ const B_ENIGMATIC = {
   nameAudio: V + "B_enigmatic.wav", // TODO: no TTS clip recorded yet
   info: {
     typeLabel: "Enigmatic scale",
-    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built from two augmented 2nds — an extremely unusual, tense, almost atonal sound.",
-    advanced: "Interval pattern H, aug2nd, aug2nd, W, W, H, H — two stacked augmented 2nds give this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
+    description: "Giuseppe Verdi's famously \"impossible to resolve\" scale, built around one augmented 2nd — an extremely unusual, tense, almost atonal sound.",
+    advanced: "Interval pattern H, Aug2, W, W, W, H, H — the single augmented 2nd gives this scale a deliberately unresolved, off-kilter character; Verdi wrote it as a puzzle for other composers.",
     keyInfo: {
       signature: "N/A — non-diatonic, no standard key signature",
       relative: "N/A",
