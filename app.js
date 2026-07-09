@@ -896,21 +896,12 @@ function onScaleSelectionChanged() {
 scaleSelect.addEventListener("change", onScaleSelectionChanged);
 scaleTypeSelect.addEventListener("change", onScaleSelectionChanged);
 
-// Auto-apply: everything about a scale change (availability, scale info,
-// piano roll, sheet music) already re-renders live on <select> change --
-// Apply's only remaining job was dismissing the popout, which forced an
-// extra click after a selection that had already visibly taken effect.
-// Close automatically a beat after the last change, short enough to feel
-// instant but long enough to pick Root Note and Scale Type in one visit
-// to the panel without it closing mid-selection. Apply still works too,
-// for anyone who prefers an explicit confirm.
-let autoApplyCloseTimer = null;
-function scheduleAutoApplyClose() {
-  clearTimeout(autoApplyCloseTimer);
-  autoApplyCloseTimer = setTimeout(closeAllPopouts, 450);
-}
-scaleSelect.addEventListener("change", scheduleAutoApplyClose);
-scaleTypeSelect.addEventListener("change", scheduleAutoApplyClose);
+// Auto-apply, no auto-close: everything about a scale change (availability,
+// scale info, piano roll, sheet music) already re-renders live on <select>
+// change, so there's no separate "apply" step needed. The panel itself
+// stays open on selection -- closing automatically would cut a user off
+// mid-decision if they meant to also change the other dropdown (Root Note
+// vs Scale Type). They close it themselves (X button or Escape) when done.
 
 // Subdivision changes don't reschedule — the permanent 16n callback reads
 // toggleSubdivision.value live. Just reset the beat counter so accents land on
@@ -1108,7 +1099,6 @@ document.querySelectorAll("select").forEach((sel) => {
 document.querySelectorAll("[data-close-panel]").forEach((btn) => {
   btn.addEventListener("click", closeAllPopouts);
 });
-document.getElementById("scale-apply-btn")?.addEventListener("click", closeAllPopouts);
 
 // Notes-in-Scale pills — unique pitch classes from the RH section, in ascending
 // order of first appearance, root highlighted. Works for any slot count (5-note
@@ -1281,8 +1271,8 @@ document.addEventListener("keydown", (e) => {
 // to stay blank until Play was pressed, because PianoRoll.render()/
 // SheetMusic.init() only ran inside the Tone.start()-gated ensureLoaded().
 // This renders the static board/staff for whatever scale is already
-// selected — on load, on every scale change, and on Apply — without
-// touching the audio-loading path at all.
+// selected — on load and on every scale change — without touching the
+// audio-loading path at all.
 function renderVisualsForCurrentScale() {
   const scale = currentScale();
   const pianoRollEl = document.getElementById("piano-roll");
@@ -1303,5 +1293,4 @@ function renderVisualsForCurrentScale() {
 }
 scaleSelect.addEventListener("change", renderVisualsForCurrentScale);
 scaleTypeSelect.addEventListener("change", renderVisualsForCurrentScale);
-document.getElementById("scale-apply-btn")?.addEventListener("click", renderVisualsForCurrentScale);
 renderVisualsForCurrentScale();

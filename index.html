@@ -224,13 +224,6 @@
   }
   .note-pill.root { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
 
-  .btn-primary {
-    padding: 9px 20px; border-radius: 9px; background: var(--accent); color: var(--accent-fg);
-    font-size: 0.85rem; font-weight: 700; cursor: pointer; border: none; font-family: inherit;
-    transition: filter 0.12s;
-  }
-  .btn-primary:hover { background: var(--accent-hover); }
-
   details.more-info { margin-top: 6px; border-top: 1px solid var(--border); padding-top: 12px; }
   details.more-info summary {
     cursor: pointer; list-style: none; display: flex; align-items: center; gap: 6px;
@@ -853,7 +846,7 @@
   :focus-visible { outline: none; box-shadow: var(--focus-ring); }
   .nav-btn:focus-visible, .btn-icon:focus-visible, #play-btn:focus-visible,
   .pill:focus-visible, .preset-pill:focus-visible, .theme-pill:focus-visible,
-  .size-pill:focus-visible, .btn-primary:focus-visible, .btn-tap:focus-visible,
+  .size-pill:focus-visible, .btn-tap:focus-visible,
   .popout-close:focus-visible, .beat-cell:focus-visible, .theory-nav:focus-visible,
   .theory-dot:focus-visible, .tempo-nudge:focus-visible {
     border-radius: 999px;
@@ -933,8 +926,6 @@
         <label class="field-label">Notes in Scale</label>
         <div class="notes-pills" id="notes-in-scale"></div>
       </div>
-
-      <button class="btn-primary" id="scale-apply-btn">Apply</button>
 
       <details class="more-info">
         <summary>Scale Info</summary>
