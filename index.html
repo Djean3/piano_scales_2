@@ -436,8 +436,9 @@
       inset -3px 0 3px rgba(0,0,0,0.35);
   }
   .piano-key.active {
-    background: linear-gradient(180deg, #ff8a7d 0%, #e53935 60%, #b71c1c 100%) !important;
-    box-shadow: 0 0 10px 2px rgba(229,57,53,0.9), 0 0 34px rgba(229,57,53,0.6), inset 0 -4px 6px rgba(0,0,0,0.25) !important;
+    background: var(--accent) !important;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 55%, white) 0%, var(--accent) 55%, color-mix(in srgb, var(--accent) 70%, black) 100%) !important;
+    box-shadow: 0 0 10px 2px var(--neon-1), 0 0 34px var(--neon-2), inset 0 -4px 6px rgba(0,0,0,0.25) !important;
   }
   .piano-key .key-finger, .piano-key .key-note, .piano-key .key-degree {
     font-size: 0.8rem; font-weight: 700; line-height: 1.1; color: #14151a; pointer-events: none;
@@ -736,6 +737,10 @@
       <button class="nav-btn" data-panel="settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         <span>Settings</span>
+      </button>
+      <button class="nav-btn" data-panel="faq">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.9.75c0 1.75-2.4 2-2.4 3.5"/><path d="M12 17h.01"/></svg>
+        <span>FAQ</span>
       </button>
     </nav>
 
@@ -1048,6 +1053,45 @@
         </div>
         <span class="field-hint" id="size-auto-hint"></span>
       </div>
+    </div>
+
+    <div class="popout" data-panel="faq">
+      <div class="popout-header">
+        <p class="popout-title">FAQ</p>
+        <button class="popout-close" data-close-panel aria-label="Close"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <details class="more-info" open>
+        <summary>What do the buttons at the top do?</summary>
+        <p class="about-text"><strong>Scale</strong> picks the root note and scale/arpeggio type. <strong>Tempo</strong> sets the BPM (or tap it in). <strong>Audio Cues</strong> controls what gets spoken/played about the notes themselves — piano sound, note names, finger numbers, cross-hand cues, voice cues. <strong>Metronome</strong> is the click track underneath everything — sound, subdivision, groove style, accents, swing. <strong>Practice</strong> controls which hand plays and how (see below). <strong>Settings</strong> is theme and screen size.</p>
+      </details>
+      <details class="more-info">
+        <summary>What's the difference between Audio Cues and Metronome?</summary>
+        <p class="about-text">Audio Cues are about the <strong>notes</strong> — hearing the piano, hearing "3, C" spoken for a finger + note name. Metronome is about the <strong>beat</strong> — the click track, its rhythm feel, and its accent pattern. They're independent: you can have a metronome running with the piano and voice muted, or vice versa.</p>
+      </details>
+      <details class="more-info">
+        <summary>What do Full / Up / Down mean in Practice?</summary>
+        <p class="about-text"><strong>Full</strong> plays the scale ascending then descending. <strong>Up</strong> plays only the ascent, <strong>Down</strong> only the descent. Pick which hand(s) play with Right Hand / Left Hand / Both Hands above those buttons.</p>
+      </details>
+      <details class="more-info">
+        <summary>What are the Cross Over / Cross Under arcs?</summary>
+        <p class="about-text">Scales that span more than 5 notes in one hand need a finger to cross under the thumb (or the thumb to cross under a finger) to keep going. The curved arc on the piano roll and sheet music, plus the spoken cue, mark exactly where that crossing happens.</p>
+      </details>
+      <details class="more-info">
+        <summary>What do Pre-count and Speed Ramp do?</summary>
+        <p class="about-text"><strong>Pre-count</strong> counts off a few beats before the scale actually starts, like a metronome count-in. <strong>Speed Ramp</strong> automatically nudges the tempo up by a set amount every few loops, so you can practice gradually building speed without manually adjusting the tempo yourself.</p>
+      </details>
+      <details class="more-info">
+        <summary>Why does the keyboard show more keys than the scale uses?</summary>
+        <p class="about-text">The piano roll always shows an extra octave of context on either side of whatever notes the current scale plays, so it reads like a real keyboard instead of a cropped sliver sized exactly to the notes.</p>
+      </details>
+      <details class="more-info">
+        <summary>What does the Size setting do, and why did it pick one for me?</summary>
+        <p class="about-text">Mobile / Tablet / Computer resize the layout and piano for that screen. On your first visit it's auto-detected from your device — you can switch it manually anytime in Settings, and your choice is remembered after that.</p>
+      </details>
+      <details class="more-info">
+        <summary>Why does the piano scroll sideways instead of showing all the keys?</summary>
+        <p class="about-text">Keys have a minimum legible width. If squeezing every key (plus the extra octave of context) into a narrow screen would make them too thin to read, the keyboard keeps a readable key size and scrolls horizontally instead.</p>
+      </details>
     </div>
 
   </div>
