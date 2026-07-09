@@ -36,6 +36,7 @@
     --nav-font:     0.68rem;
     --nav-icon:     20px;
     --nav-padding:  8px 16px;
+    --focus-ring:   0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
     color-scheme: dark;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04";
@@ -63,13 +64,10 @@
     position: sticky;
     top: 0;
     z-index: 40;
-    background:
-      linear-gradient(120deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 50%, transparent 100%),
-      var(--glass-bg);
+    background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--glass-border);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 1px 24px -4px var(--neon-1);
   }
   .header-row {
     max-width: var(--content-max);
@@ -119,13 +117,10 @@
     gap: 2px;
     padding: 8px 16px;
     border-radius: 12px;
-    background:
-      linear-gradient(135deg, rgba(255,255,255,0.09) 0%, transparent 60%),
-      var(--glass-bg-2);
+    background: var(--glass-bg-2);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
-    box-shadow: var(--neon-glow), inset 0 1px 0 rgba(255,255,255,0.1);
     flex-shrink: 0;
     min-width: 150px;
   }
@@ -137,20 +132,14 @@
   .popout-zone { position: relative; margin: 14px 0 0; min-height: 0; }
   .popout {
     display: none;
-    background:
-      linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 35%, rgba(124,108,246,0.06) 100%),
-      var(--glass-bg);
+    background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     padding: 20px 22px;
     margin-bottom: 16px;
-    box-shadow:
-      var(--neon-glow),
-      0 16px 40px rgba(0,0,0,0.45),
-      inset 0 1px 0 rgba(255,255,255,0.18),
-      inset 0 0 0 1px rgba(255,255,255,0.04);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
   }
   .popout.open { display: block; animation: popout-in 0.18s ease-out; }
   @keyframes popout-in {
@@ -270,12 +259,15 @@
   .beat-grid { display: flex; gap: 8px; margin-top: 8px; }
   .beat-cell { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; user-select: none; flex: 1; -webkit-tap-highlight-color: transparent; }
   .beat-cell-bar { width: 100%; height: 48px; border-radius: 4px; border: 1px solid var(--border); overflow: hidden; position: relative; transition: border-color 0.12s; }
-  .beat-cell-fill { position: absolute; bottom: 0; left: 0; right: 0; border-radius: 3px; transition: height 0.12s, background 0.12s; }
+  .beat-cell-fill {
+    position: absolute; inset: 0; border-radius: 3px; transform-origin: bottom;
+    transform: scaleY(0); transition: transform 0.12s, background 0.12s;
+  }
   .beat-cell[data-level="3"] .beat-cell-bar  { border-color: var(--accent); }
-  .beat-cell[data-level="3"] .beat-cell-fill { height: 100%; background: var(--accent); }
-  .beat-cell[data-level="2"] .beat-cell-fill { height: 62%; background: var(--muted); }
-  .beat-cell[data-level="1"] .beat-cell-fill { height: 26%; background: var(--muted); opacity: 0.5; }
-  .beat-cell[data-level="0"] .beat-cell-fill { height: 0; }
+  .beat-cell[data-level="3"] .beat-cell-fill { transform: scaleY(1); background: var(--accent); }
+  .beat-cell[data-level="2"] .beat-cell-fill { transform: scaleY(0.62); background: var(--muted); }
+  .beat-cell[data-level="1"] .beat-cell-fill { transform: scaleY(0.26); background: var(--muted); opacity: 0.5; }
+  .beat-cell[data-level="0"] .beat-cell-fill { transform: scaleY(0); }
   .beat-cell-num { font-size: 0.7rem; color: var(--muted); font-weight: 700; line-height: 1; }
 
   .preset-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
@@ -351,11 +343,10 @@
   .stage { margin-top: 18px; }
   .sheet-music-panel {
     background: var(--surface);
-    border-radius: 18px 18px 0 0;
+    border-radius: 16px 16px 0 0;
     padding: 20px 20px 8px;
     border: 1px solid var(--glass-border);
     border-bottom: none;
-    box-shadow: 0 0 0 1px var(--neon-1), 0 0 30px -8px var(--neon-1);
   }
   .sheet-music-scroller { width: 100%; overflow-x: auto; }
   .sheet-music-scroller svg { display: block; overflow: visible; }
@@ -365,11 +356,11 @@
 
   .piano-panel {
     background: var(--bg);
-    border-radius: 0 0 18px 18px;
+    border-radius: 0 0 16px 16px;
     padding: 18px 18px 22px;
-    border: 1px solid var(--neon-1);
+    border: 1px solid var(--glass-border);
     border-top: none;
-    box-shadow: inset 0 6px 18px rgba(0,0,0,0.35), 0 18px 40px rgba(0,0,0,0.3), 0 0 30px -8px var(--neon-2);
+    box-shadow: inset 0 6px 18px rgba(0,0,0,0.35);
   }
 
   /* Cross arcs */
@@ -674,7 +665,78 @@
   html[data-theme="hc"] .popout, html[data-theme="hc"] .app-header, html[data-theme="hc"] .transport-bar { backdrop-filter: none; -webkit-backdrop-filter: none; border-width: 1.5px; }
   html[data-theme="hc"] .beat-dot { background: var(--surface-2); }
 
-  /* ── Size modes (Mobile / Tablet / Computer) ── */
+  /* ── Responsive layout ─────────────────────────────────────────────
+     Real breakpoints are the primary mechanism now (they always match
+     the actual window, unlike the old JS touch/UA sniff that got stuck
+     the moment it wrote a value to localStorage). The Settings → Size
+     pills below are an explicit override layered on top for the rare
+     case someone wants a different density than their current window
+     (testing, or deliberately cramming mobile density onto a big
+     monitor) -- they are not the source of truth for the default. ── */
+  @media (max-width: 1023px) {
+    :root {
+      --content-max:  820px;
+      --piano-height: 115px;
+      --piano-scale:  0.95;
+      --piano-tilt:   9deg;
+      --nav-font:     0.62rem;
+      --nav-icon:     18px;
+      --nav-padding:  7px 11px;
+    }
+    .header-row { padding: 12px 16px; }
+  }
+  @media (max-width: 640px) {
+    :root {
+      --content-max:  480px;
+      --piano-height: 90px;
+      --piano-scale:  0.92;
+      --piano-tilt:   5deg;
+      --nav-font:     0.56rem;
+      --nav-icon:     19px;
+      --nav-padding:  8px;
+    }
+    .header-row { gap: 6px; padding: 10px 12px; flex-wrap: wrap; }
+    .tool-nav { order: 1; flex-basis: 100%; justify-content: space-between; }
+    /* Icon-only nav on mobile -- 7 labeled buttons don't fit a phone width
+       without either scrolling or shrinking text past legibility. The label
+       stays in the DOM via aria-label on the button for screen readers. */
+    .nav-btn span { display: none; }
+    .status-card {
+      order: 2; flex-basis: 100%; min-width: 0; width: 100%;
+      flex-direction: row; align-items: baseline; justify-content: center; gap: 8px;
+      padding: 5px 10px;
+    }
+    .status-card-loop { display: none; }
+    .shell { padding: 0 10px 30px; }
+    .popout { padding: 14px 14px; }
+    .field-row { flex-direction: column; gap: 10px; }
+    .transport-bar { padding: 10px; gap: 10px; justify-content: center; }
+    .quick-tempo-unit,
+    .transport-session span:first-child { display: none; }
+    /* Primary transport controls (restart/play/stop/loop) keep the top row;
+       hand-swap and volume get their own full-width rows underneath instead
+       of cramming into one line with sub-44px targets (P2). */
+    .quick-hand-swap { order: 1; flex-basis: 100%; justify-content: center; margin-top: 2px; }
+    .quick-hand-swap .pill { padding: 9px 16px; }
+    .transport-spacer { display: none; }
+    .quick-tempo { order: 2; }
+    .transport-session { order: 2; }
+    .transport-volume { order: 3; flex-basis: 100%; justify-content: center; margin-left: 0; }
+    #master-volume { width: 140px; }
+  }
+
+  /* ── Manual Size override (Settings → Size) ──
+     Wins over the media queries above whenever the user has explicitly
+     picked one, regardless of the window's actual width. */
+  html[data-size="desktop"] {
+    --content-max:  1220px;
+    --piano-height: 155px;
+    --piano-scale:  1;
+    --piano-tilt:   13deg;
+    --nav-font:     0.68rem;
+    --nav-icon:     20px;
+    --nav-padding:  8px 16px;
+  }
   html[data-size="tablet"] {
     --content-max:  820px;
     --piano-height: 115px;
@@ -695,9 +757,6 @@
   }
   html[data-size="mobile"] .header-row { gap: 6px; padding: 10px 12px; flex-wrap: wrap; }
   html[data-size="mobile"] .tool-nav { order: 1; flex-basis: 100%; justify-content: space-between; }
-  /* Icon-only nav on mobile -- 7 labeled buttons don't fit a phone width
-     without either scrolling or shrinking text past legibility. The label
-     stays in the DOM via aria-label on the button for screen readers. */
   html[data-size="mobile"] .nav-btn span { display: none; }
   html[data-size="mobile"] .status-card {
     order: 2; flex-basis: 100%; min-width: 0; width: 100%;
@@ -712,6 +771,24 @@
   html[data-size="mobile"] .quick-tempo-unit,
   html[data-size="mobile"] .transport-session span:first-child { display: none; }
   html[data-size="tablet"] .header-row { padding: 12px 16px; }
+
+  /* ── Touch targets (P2) -- coarse pointers get bigger hit areas ── */
+  @media (pointer: coarse) {
+    .tempo-nudge { width: 40px; height: 40px; }
+    .btn-icon { width: 46px; height: 46px; }
+    .popout-close { width: 34px; height: 34px; }
+  }
+
+  /* ── Focus visibility (P1) -- one rule, every interactive element ── */
+  :focus-visible { outline: none; box-shadow: var(--focus-ring); }
+  .nav-btn:focus-visible, .btn-icon:focus-visible, #play-btn:focus-visible,
+  .pill:focus-visible, .preset-pill:focus-visible, .theme-pill:focus-visible,
+  .size-pill:focus-visible, .btn-primary:focus-visible, .btn-tap:focus-visible,
+  .popout-close:focus-visible, .beat-cell:focus-visible, .theory-nav:focus-visible,
+  .theory-dot:focus-visible, .tempo-nudge:focus-visible {
+    border-radius: 999px;
+  }
+  select:focus-visible, input:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 </style>
 </head>
 <body>
@@ -832,9 +909,8 @@
           <p class="about-text">
             Note <em>pitches</em> and scale names are correct throughout. The part
             that's less certain is exactly which <em>finger number</em> is shown/spoken
-            at a few spots in the irregular keys and their modes/arpeggios/exotic
-            scales — flagged for later double-checking in <code>FINGERING_REVIEW_LOG.md</code>
-            and the per-batch review files in the project repo.
+            at a few spots in the irregular keys and their modes, arpeggios, and
+            exotic scales.
           </p>
         </div>
       </details>
@@ -926,15 +1002,20 @@
           <button class="preset-pill" data-preset="rock">Rock</button>
           <button class="preset-pill" data-preset="blues">Blues</button>
           <button class="preset-pill" data-preset="hiphop">Hip Hop</button>
-          <button class="preset-pill" data-preset="reggae">Reggae</button>
-          <button class="preset-pill" data-preset="funk">Funk</button>
-          <button class="preset-pill" data-preset="dance">Dance</button>
-          <button class="preset-pill" data-preset="latin">Latin</button>
           <button class="preset-pill" data-preset="jazz">Jazz</button>
-          <button class="preset-pill" data-preset="shuffle">Shuffle</button>
-          <button class="preset-pill" data-preset="gospel">Gospel</button>
-          <button class="preset-pill" data-preset="country">Country</button>
         </div>
+        <details class="more-info">
+          <summary>More styles</summary>
+          <div class="preset-row">
+            <button class="preset-pill" data-preset="reggae">Reggae</button>
+            <button class="preset-pill" data-preset="funk">Funk</button>
+            <button class="preset-pill" data-preset="dance">Dance</button>
+            <button class="preset-pill" data-preset="latin">Latin</button>
+            <button class="preset-pill" data-preset="shuffle">Shuffle</button>
+            <button class="preset-pill" data-preset="gospel">Gospel</button>
+            <button class="preset-pill" data-preset="country">Country</button>
+          </div>
+        </details>
       </div>
       <div class="field-block">
         <span class="field-block-label">Accent <span style="text-transform:none;font-weight:500;">(tap to cycle)</span></span>

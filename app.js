@@ -1101,52 +1101,34 @@ function syncStatusCard() {
 setInterval(syncStatusCard, 500);
 syncStatusCard();
 
-// Size mode (Mobile / Tablet / Computer) — a manual layout-density override,
-// separate from the theme system. Persists the same way (localStorage,
-// html.dataset), but "desktop" is the implicit default and never gets its
-// own `html[data-size="desktop"]` CSS block since it just uses the :root
-// values already sized for computer screens.
+// Size mode (Mobile / Tablet / Computer) — an explicit manual override on
+// top of the real CSS media queries that now drive the default layout.
+// Previously this wrote a guessed value (touch capability + user agent) to
+// localStorage on first visit and that guess stuck forever, even across a
+// resize or a different device — the literal cause of the "desktop renders
+// as a narrow mobile column" bug. Now: no attribute at all until the user
+// explicitly picks one, so the media queries in index.html's <style> block
+// govern the default and always match the real window.
 (function () {
   const htmlEl = document.documentElement;
   const sizePills = document.querySelectorAll(".size-pill");
   const sizeHint = document.getElementById("size-auto-hint");
   const SIZE_STORAGE_KEY = "scalePracticeSize";
 
-  function applySize(val, isAutoDetected) {
-    if (val === "desktop") delete htmlEl.dataset.size;
-    else htmlEl.dataset.size = val;
+  function applySize(val) {
+    htmlEl.dataset.size = val;
     sizePills.forEach((p) => p.classList.toggle("active", p.dataset.sizeVal === val));
     try { localStorage.setItem(SIZE_STORAGE_KEY, val); } catch (e) {}
-    if (sizeHint) {
-      const label = val === "mobile" ? "Mobile" : val === "tablet" ? "Tablet" : "Computer";
-      sizeHint.textContent = isAutoDetected ? `Auto-detected: ${label} — pick a different one anytime.` : "";
-    }
+    if (sizeHint) sizeHint.textContent = "";
   }
 
-  sizePills.forEach((p) => p.addEventListener("click", () => applySize(p.dataset.sizeVal, false)));
-
-  // Guesses a sensible default from the device itself (touch capability +
-  // user agent + viewport width) so first-time visitors land on a readable
-  // layout without having to open Settings — only used when the user hasn't
-  // already picked a size explicitly (that choice always wins on return visits).
-  function detectDeviceSize() {
-    const ua = navigator.userAgent || "";
-    const isTouch = (navigator.maxTouchPoints || 0) > 0 || "ontouchstart" in window;
-    const w = window.innerWidth;
-    if (/iPhone|Android.*Mobile|Mobi/i.test(ua)) return "mobile";
-    if (/iPad|Android(?!.*Mobile)/i.test(ua)) return "tablet";
-    if (isTouch && w < 600) return "mobile";
-    if (isTouch && w < 1200) return "tablet";
-    if (w < 600) return "mobile";
-    if (w < 1024) return "tablet";
-    return "desktop";
-  }
+  sizePills.forEach((p) => p.addEventListener("click", () => applySize(p.dataset.sizeVal)));
 
   const savedSize = (() => { try { return localStorage.getItem(SIZE_STORAGE_KEY); } catch (e) { return null; } })();
   if (savedSize && ["mobile", "tablet", "desktop"].includes(savedSize)) {
-    applySize(savedSize, false);
-  } else {
-    applySize(detectDeviceSize(), true);
+    applySize(savedSize);
+  } else if (sizeHint) {
+    sizeHint.textContent = "Auto — matches your window size; pick one to override.";
   }
 })();
 
@@ -1203,3 +1185,56 @@ if (quickTempoDisplay) {
   setInterval(syncQuickTempo, 250);
   syncQuickTempo();
 }
+
+// Accessibility (P1): aria-pressed mirrors the .active class on every
+// toggle-style button (hand-focus pills, metronome presets, theme/size
+// pills, nav tabs, loop toggle) via one observer instead of touching every
+// individual click handler above — covers all current and future toggle
+// sites the same way.
+(function () {
+  const TOGGLE_SELECTOR = ".pill, .preset-pill, .theme-pill, .size-pill, .nav-btn, #loop-toggle-btn";
+  function sync(el) {
+    if (el.matches && el.matches(TOGGLE_SELECTOR)) {
+      el.setAttribute("aria-pressed", el.classList.contains("active") ? "true" : "false");
+    }
+  }
+  document.querySelectorAll(TOGGLE_SELECTOR).forEach(sync);
+  new MutationObserver((mutations) => {
+    for (const m of mutations) sync(m.target);
+  }).observe(document.body, { attributes: true, attributeFilter: ["class"], subtree: true });
+})();
+
+// Accessibility (P1): Escape closes whichever popout is open; Space toggles
+// Play/Stop, unless focus is inside a text input or select (so typing in
+// the tempo/ramp fields, or working a <select>, isn't hijacked).
+document.addEventListener("keydown", (e) => {
+  const tag = document.activeElement && document.activeElement.tagName;
+  const typing = tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA";
+  if (e.key === "Escape") {
+    closeAllPopouts();
+  } else if (e.code === "Space" && !typing) {
+    e.preventDefault();
+    if (!stopBtn.disabled) stopBtn.click();
+    else if (!playBtn.disabled) playBtn.click();
+  }
+});
+
+// Default-visible stage (explicit fix): the piano roll and sheet music used
+// to stay blank until Play was pressed, because PianoRoll.render()/
+// SheetMusic.init() only ran inside the Tone.start()-gated ensureLoaded().
+// This renders the static board/staff for whatever scale is already
+// selected — on load, on every scale change, and on Apply — without
+// touching the audio-loading path at all.
+function renderVisualsForCurrentScale() {
+  const scale = currentScale();
+  const pianoRollEl = document.getElementById("piano-roll");
+  const sheetMusicEl = document.getElementById("sheet-music");
+  if (!scale || !pianoRollEl || !sheetMusicEl) return;
+  const range = scalePitchRange(scale);
+  PianoRoll.render(pianoRollEl, range.min, range.max);
+  SheetMusic.init(sheetMusicEl, scale);
+}
+scaleSelect.addEventListener("change", renderVisualsForCurrentScale);
+scaleTypeSelect.addEventListener("change", renderVisualsForCurrentScale);
+document.getElementById("scale-apply-btn")?.addEventListener("click", renderVisualsForCurrentScale);
+renderVisualsForCurrentScale();
