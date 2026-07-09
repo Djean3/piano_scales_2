@@ -1042,7 +1042,21 @@ function openPopout(panel) {
   closeAllPopouts();
   const panelEl = document.querySelector(`.popout[data-panel="${panel}"]`);
   const btnEl = document.querySelector(`.nav-btn[data-panel="${panel}"]`);
-  if (panelEl) panelEl.classList.add("open");
+  if (panelEl) {
+    panelEl.classList.add("open");
+    // One deliberate motion moment (via Motion, not a scattered CSS
+    // transition on everything): a real spring reveal for whichever panel
+    // just opened. Respects prefers-reduced-motion; degrades to the plain
+    // instant show above if Motion failed to load from its CDN.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (typeof Motion !== "undefined" && !reduceMotion) {
+      Motion.animate(
+        panelEl,
+        { opacity: [0, 1], transform: ["translateY(-10px) scale(0.98)", "translateY(0) scale(1)"] },
+        { type: "spring", stiffness: 420, damping: 32 }
+      );
+    }
+  }
   if (btnEl) btnEl.classList.add("active");
 }
 document.querySelectorAll(".nav-btn").forEach((btn) => {
