@@ -22,10 +22,16 @@ function scalePitchRange(scale) {
     }
   }
   const loC = lo - ((lo % 12 + 12) % 12);
-  // Show a full extra octave of context below and above the scale's own
-  // range so the keyboard reads as a real piano rather than a cropped
-  // sliver of keys sized to exactly what's being played.
-  return { min: loC - 12, max: hi + 12 };
+  const nativeSpan = hi - loC;
+  // Show extra context below/above the scale's own range so the keyboard
+  // reads as a real piano rather than a cropped sliver of keys sized to
+  // exactly what's being played -- a full extra octave on each side works
+  // well for typical single/double-octave scales. But multi-octave
+  // arpeggios (3+ octaves natively) already span most of a phone screen;
+  // doubling that up with another full octave on each side forced heavy
+  // horizontal scrolling. Taper the padding down as the native range grows.
+  const pad = nativeSpan > 36 ? 4 : nativeSpan > 24 ? 8 : 12;
+  return { min: loC - pad, max: hi + pad };
 }
 
 function labelFromAudio(path) {
@@ -1233,6 +1239,15 @@ function renderVisualsForCurrentScale() {
   const range = scalePitchRange(scale);
   PianoRoll.render(pianoRollEl, range.min, range.max);
   SheetMusic.init(sheetMusicEl, scale);
+  // SheetMusic.init() builds every section hidden (display:none) -- normally
+  // a section only becomes visible once playback reaches a slot tagged with
+  // it. Show the currently hand-selected section by default so the stave
+  // isn't blank before Play is ever pressed. selectedSection can be an
+  // Up/Down sub-variant ("rh-fwd", "together-bwd") -- those aren't real
+  // section ids (scale.sections only has base rh/lh/together), so strip the
+  // suffix; showSection() silently hides everything if passed an id with no
+  // matching section.
+  SheetMusic.showSection(selectedSection.replace(/-(fwd|bwd)$/, ""));
 }
 scaleSelect.addEventListener("change", renderVisualsForCurrentScale);
 scaleTypeSelect.addEventListener("change", renderVisualsForCurrentScale);

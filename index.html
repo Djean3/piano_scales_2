@@ -715,7 +715,13 @@
     .shell { padding: 0 10px 30px; }
     .popout { padding: 14px 14px; }
     .field-row { flex-direction: column; gap: 10px; }
-    .transport-bar { padding: 10px; gap: 10px; justify-content: center; }
+    /* The 999px full-pill radius was designed for a single-row bar. Now that
+       mobile wraps hand-swap/tempo/volume onto their own rows underneath, a
+       true pill shape curves aggressively into those wrapped rows' corners,
+       visually cutting into whatever sits near the left/right edges
+       (reported as the tempo control "clipping the edge"). A modest rounded
+       rect reads correctly at any height. */
+    .transport-bar { padding: 10px; gap: 10px; justify-content: center; border-radius: 22px; }
     .quick-tempo-unit,
     .transport-session span:first-child { display: none; }
     /* Primary transport controls (restart/play/stop/loop) keep the top row;
@@ -872,52 +878,8 @@
       <button class="btn-primary" id="scale-apply-btn">Apply</button>
 
       <details class="more-info">
-        <summary>Scale Info &amp; About This Build</summary>
+        <summary>Scale Info</summary>
         <div id="scale-info"></div>
-
-        <div class="about-body">
-          <h4 class="about-heading">What's included</h4>
-          <p class="about-text">
-            All 12 chromatic keys (C, D♭, D, E♭, E, F, F♯, G, A♭, A, B♭, B), each with
-            Major, Natural Minor, Harmonic Minor, and Melodic Minor — 48 scales total.
-            Every key also has its 5 other diatonic modes (Dorian, Phrygian, Lydian,
-            Mixolydian, Locrian), for 60 more — <strong>108 scales</strong>, plus
-            168 arpeggio patterns and 120 pentatonic/exotic scales.
-            Fingering for the 7 "easy" keys (C, D, G, A, E plus their modes) follows the
-            standard scaffold taught in most method books. The other 7 keys (B, F♯, F,
-            B♭, E♭, A♭, D♭) have irregular fingering that was read directly from
-            Alfred's Basic Piano Library rather than assumed.
-          </p>
-
-          <h4 class="about-heading">Key decisions</h4>
-          <ul class="about-list">
-            <li>
-              <strong>"Db Minor" plays C♯ minor's notes.</strong> True D♭ minor needs
-              8 flats including a double-flat (B𝄫) and is never actually written or
-              played that way — every musician uses the enharmonic equivalent, C♯
-              minor, instead.
-            </li>
-            <li>
-              <strong>A few mode notes are spelled with a practical enharmonic instead
-              of the "textbook correct" one.</strong> Some mode/root combinations
-              respell to whatever a musician would actually write, e.g. F♯ major
-              spells its 7th degree "F" instead of "E♯".
-            </li>
-            <li>
-              <strong>Modes reuse each root's own confirmed major-scale fingering.</strong>
-              Keeps the physical hand position consistent for a given root across all
-              of its scale types.
-            </li>
-          </ul>
-
-          <h4 class="about-heading">What might not be 100% right</h4>
-          <p class="about-text">
-            Note <em>pitches</em> and scale names are correct throughout. The part
-            that's less certain is exactly which <em>finger number</em> is shown/spoken
-            at a few spots in the irregular keys and their modes, arpeggios, and
-            exotic scales.
-          </p>
-        </div>
       </details>
     </div>
 
@@ -1181,6 +1143,53 @@
       <details class="more-info">
         <summary>Why does the piano scroll sideways instead of showing all the keys?</summary>
         <p class="about-text">Keys have a minimum legible width. If squeezing every key (plus the extra octave of context) into a narrow screen would make them too thin to read, the keyboard keeps a readable key size and scrolls horizontally instead.</p>
+      </details>
+      <details class="more-info">
+        <summary>About this build</summary>
+        <div class="about-body">
+          <h4 class="about-heading">What's included</h4>
+          <p class="about-text">
+            All 12 chromatic keys (C, D♭, D, E♭, E, F, F♯, G, A♭, A, B♭, B), each with
+            Major, Natural Minor, Harmonic Minor, and Melodic Minor — 48 scales total.
+            Every key also has its 5 other diatonic modes (Dorian, Phrygian, Lydian,
+            Mixolydian, Locrian), for 60 more — <strong>108 scales</strong>, plus
+            168 arpeggio patterns and 120 pentatonic/exotic scales.
+            Fingering for the 7 "easy" keys (C, D, G, A, E plus their modes) follows the
+            standard scaffold taught in most method books. The other 7 keys (B, F♯, F,
+            B♭, E♭, A♭, D♭) have irregular fingering that was read directly from
+            Alfred's Basic Piano Library rather than assumed.
+          </p>
+
+          <h4 class="about-heading">Key decisions</h4>
+          <ul class="about-list">
+            <li>
+              <strong>"Db Minor" plays C♯ minor's notes.</strong> True D♭ minor needs
+              8 flats including a double-flat (B𝄫) and is never actually written or
+              played that way — every musician uses the enharmonic equivalent, C♯
+              minor, instead. This is a general note about the whole 108-scale system,
+              not about whichever scale you currently have selected.
+            </li>
+            <li>
+              <strong>A few mode notes are spelled with a practical enharmonic instead
+              of the "textbook correct" one.</strong> Some mode/root combinations
+              respell to whatever a musician would actually write, e.g. F♯ major
+              spells its 7th degree "F" instead of "E♯".
+            </li>
+            <li>
+              <strong>Modes reuse each root's own confirmed major-scale fingering.</strong>
+              Keeps the physical hand position consistent for a given root across all
+              of its scale types.
+            </li>
+          </ul>
+
+          <h4 class="about-heading">What might not be 100% right</h4>
+          <p class="about-text">
+            Note <em>pitches</em> and scale names are correct throughout. The part
+            that's less certain is exactly which <em>finger number</em> is shown/spoken
+            at a few spots in the irregular keys and their modes, arpeggios, and
+            exotic scales.
+          </p>
+        </div>
       </details>
     </div>
 

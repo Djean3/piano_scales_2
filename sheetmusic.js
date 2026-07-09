@@ -139,7 +139,18 @@ const SheetMusic = (() => {
     const VF = Vex.Flow;
     const slotCount = section.slots.length;
     const width = slotCount * 65 + 70;
-    const height = 280;
+    // Headroom above the treble stave and below the bass stave for ledger
+    // lines. VexFlow draws high notes above the stave (and low notes below
+    // it) using coordinates that can go negative relative to a tight
+    // top margin -- anything outside the SVG's viewBox gets clipped by the
+    // scroller ancestor (overflow-x: auto forces overflow-y to compute as
+    // auto too, per the CSS overflow spec, even though only overflow-x was
+    // set). Wide-range content (multi-octave arpeggios especially) needs
+    // real room, not the ~20px this used to leave.
+    const topMargin = 70;
+    const staveGap = 130;
+    const bottomMargin = 90;
+    const height = topMargin + staveGap + bottomMargin;
 
     container.innerHTML = "";
     const renderer = new VF.Renderer(container, VF.Renderer.Backends.SVG);
@@ -169,11 +180,11 @@ const SheetMusic = (() => {
     context.setFillStyle(ink);
     context.setStrokeStyle(ink);
 
-    const trebleStave = new VF.Stave(10, 20, width - 20);
+    const trebleStave = new VF.Stave(10, topMargin, width - 20);
     trebleStave.addClef("treble");
     trebleStave.setContext(context).draw();
 
-    const bassStave = new VF.Stave(10, 150, width - 20);
+    const bassStave = new VF.Stave(10, topMargin + staveGap, width - 20);
     bassStave.addClef("bass");
     bassStave.setContext(context).draw();
 
